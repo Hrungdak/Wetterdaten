@@ -1,4 +1,6 @@
 ﻿using System;
+using WeatherForecast.ConsoleInteractionWithUser;
+//using WeatherForecast.ConsoleInteractionWithUser;
 
 namespace WeatherForecast
 {
@@ -6,7 +8,9 @@ namespace WeatherForecast
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ConsoleInteractionHandler consolerinteractionhandler = new ConsoleInteractionHandler();
+            consolerinteractionhandler.ManageConsoleInteraction();
+            //ManageConsoleInteraction();
         }
     }
 }
