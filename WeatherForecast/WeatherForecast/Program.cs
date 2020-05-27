@@ -1,16 +1,13 @@
-﻿using System;
-using WeatherForecast.ConsoleInteractionWithUser;
-//using WeatherForecast.ConsoleInteractionWithUser;
+﻿using WeatherForecast.ConsoleInteractionWithUser;
 
 namespace WeatherForecast
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            ConsoleInteractionHandler consolerinteractionhandler = new ConsoleInteractionHandler();
-            consolerinteractionhandler.ManageConsoleInteraction();
-            //ManageConsoleInteraction();
+            ConsoleInteractionHandler consoleInteractionHandler = new ConsoleInteractionHandler();
+            consoleInteractionHandler.ManageConsoleInteraction();
         }
     }
 }
