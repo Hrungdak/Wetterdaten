@@ -11,3 +11,6 @@ C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\Weather
 C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\WeatherForecast\obj\Debug\netcoreapp3.1\WeatherForecast.dll
 C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\WeatherForecast\obj\Debug\netcoreapp3.1\WeatherForecast.pdb
 C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\WeatherForecast\obj\Debug\netcoreapp3.1\WeatherForecast.genruntimeconfig.cache
+C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\WeatherForecast\bin\Debug\netcoreapp3.1\Functionalities.dll
+C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\WeatherForecast\bin\Debug\netcoreapp3.1\Functionalities.pdb
+C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\WeatherForecast\obj\Debug\netcoreapp3.1\WeatherForecast.csproj.CopyComplete

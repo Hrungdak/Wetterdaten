@@ -1,0 +1,9 @@
+C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\Functionalities\bin\Debug\netstandard2.0\Functionalities.deps.json
+C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\Functionalities\bin\Debug\netstandard2.0\Functionalities.dll
+C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\Functionalities\bin\Debug\netstandard2.0\Functionalities.pdb
+C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\Functionalities\obj\Debug\netstandard2.0\Functionalities.csprojAssemblyReference.cache
+C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\Functionalities\obj\Debug\netstandard2.0\Functionalities.csproj.CoreCompileInputs.cache
+C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\Functionalities\obj\Debug\netstandard2.0\Functionalities.AssemblyInfoInputs.cache
+C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\Functionalities\obj\Debug\netstandard2.0\Functionalities.AssemblyInfo.cs
+C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\Functionalities\obj\Debug\netstandard2.0\Functionalities.dll
+C:\Users\Thanh-An\source\repos\Exercises_tt4\Wetterdaten\WeatherForecast\Functionalities\obj\Debug\netstandard2.0\Functionalities.pdb

@@ -1,4 +1,5 @@
 ﻿using System;
+using Functionalities;
 
 namespace WeatherForecast.ConsoleInteractionWithUser
 {
@@ -36,8 +37,10 @@ namespace WeatherForecast.ConsoleInteractionWithUser
                     Console.WriteLine("This is not a valid Postal Code within Germany!");
                 }
                 else
-                    //TODO
-                    Console.WriteLine("Für " + convertedInputToInt + " konnten noch keine Wetterdaten abgerufen werden.");
+                {
+                    WeatherData weatherData = new WeatherData();
+                    weatherData.GetWeatherForecastForZip(convertedInputToInt);
+                }
             }
             else
             {

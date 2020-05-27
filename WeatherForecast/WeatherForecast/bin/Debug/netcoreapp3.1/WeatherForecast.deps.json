@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v3.1": {
       "WeatherForecast/1.0.0": {
+        "dependencies": {
+          "Functionalities": "1.0.0"
+        },
         "runtime": {
           "WeatherForecast.dll": {}
+        }
+      },
+      "Functionalities/1.0.0": {
+        "runtime": {
+          "Functionalities.dll": {}
         }
       }
     }
   },
   "libraries": {
     "WeatherForecast/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Functionalities/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
