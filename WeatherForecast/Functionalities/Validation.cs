@@ -12,7 +12,9 @@ namespace Functionalities
         public int ConvertStringToInt(string value)
         {
             if (IsInteger(value))
+            {
                 return int.Parse(value);
+            }
 
             throw new ArgumentException();
         }

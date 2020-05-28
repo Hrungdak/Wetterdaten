@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Functionalities;
 
@@ -24,8 +17,15 @@ namespace WindowsForms
 
         private void searchbutton_Click(object sender, EventArgs e)
         {
-            WeatherData weatherData = new WeatherData();
-            outputfield.Text = weatherData.GetWeatherForecastForZip(int.Parse(userinputfield.Text));
+            if (heuteEinfachButton.Checked)
+            {
+                WeatherData weatherData = new WeatherData();
+                outputfield.Text = weatherData.GetWeatherForecastForZip(int.Parse(userinputfield.Text));
+            }
+            else
+            {
+                outputfield.Text = "Für diesen Menupunkt ist noch keine Funktionalität vorhanden.";
+            }
         }
 
         private void exitbutton_Click(object sender, EventArgs e)

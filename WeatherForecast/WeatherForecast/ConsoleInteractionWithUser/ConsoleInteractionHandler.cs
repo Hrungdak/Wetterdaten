@@ -33,7 +33,9 @@ namespace WeatherForecast.ConsoleInteractionWithUser
 
                 if (_userInputValidator.IsInteger(_userinput))
                 {
-                    if (_userInputValidator.ConvertStringToInt(_userinput) < _lowestGermanPostalCode || _userInputValidator.ConvertStringToInt(_userinput) > _highestGermanPostalCode)
+                    int zipcode = _userInputValidator.ConvertStringToInt(_userinput);
+                    if (zipcode < _lowestGermanPostalCode ||
+                        zipcode > _highestGermanPostalCode)
                     {
                         Console.WriteLine("This is not a valid Postal Code within Germany!");
                     }
