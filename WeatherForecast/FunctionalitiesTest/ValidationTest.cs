@@ -1,6 +1,9 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
+
 using Functionalities;
+
+using NUnit.Framework;
+
 using System;
 
 namespace FunctionalitiesTest
@@ -8,6 +11,7 @@ namespace FunctionalitiesTest
     [TestFixture]
     public class ValidationTest
     {
+        // TODO Alex, löschen
         [Test]
         public void IsInteger_StringEmpty_ReturnsFalse()
         {
