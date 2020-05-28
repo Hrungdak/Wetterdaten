@@ -11,7 +11,6 @@ namespace FunctionalitiesTest
     [TestFixture]
     public class ValidationTest
     {
-        // TODO Alex, löschen
         [Test]
         public void IsInteger_StringEmpty_ReturnsFalse()
         {
@@ -91,7 +90,5 @@ namespace FunctionalitiesTest
 
             result.Should().Be(12345);
         }
-
-        //TODO
     }
 }
