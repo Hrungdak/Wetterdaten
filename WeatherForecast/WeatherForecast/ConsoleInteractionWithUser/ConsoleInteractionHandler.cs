@@ -1,5 +1,5 @@
-﻿using System;
-using Functionalities;
+﻿using Functionalities;
+using System;
 
 namespace WeatherForecast.ConsoleInteractionWithUser
 {
@@ -8,6 +8,8 @@ namespace WeatherForecast.ConsoleInteractionWithUser
         private string _userinput;
         private int _lowestGermanPostalCode = 01067;
         private int _highestGermanPostalCode = 99998;
+
+        private Validation _userInputValidator = new Validation();
 
         public void ManageConsoleInteraction()
         {
@@ -22,31 +24,30 @@ namespace WeatherForecast.ConsoleInteractionWithUser
 
         private void GetUserInput()
         {
-            Console.WriteLine("Please enter a postal Code within Germany!");
-            _userinput = Console.ReadLine();
-            if (_userinput == string.Empty)
-                Environment.Exit(0);
-
-            int convertedInputToInt;
-            bool isUserInputNumber = int.TryParse(_userinput, out convertedInputToInt);
-
-            if (isUserInputNumber)
+            while (true)
             {
-                if (convertedInputToInt < _lowestGermanPostalCode || convertedInputToInt > _highestGermanPostalCode)
+                Console.WriteLine("Please enter a postal Code within Germany!");
+                _userinput = Console.ReadLine();
+                if (_userinput == string.Empty)
+                    break;
+
+                if (_userInputValidator.IsInteger(_userinput))
                 {
-                    Console.WriteLine("This is not a valid Postal Code within Germany!");
+                    if (_userInputValidator.ConvertStringToInt(_userinput) < _lowestGermanPostalCode || _userInputValidator.ConvertStringToInt(_userinput) > _highestGermanPostalCode)
+                    {
+                        Console.WriteLine("This is not a valid Postal Code within Germany!");
+                    }
+                    else
+                    {
+                        WeatherData weatherData = new WeatherData();
+                        Console.WriteLine(weatherData.GetWeatherForecastForZip(_userInputValidator.ConvertStringToInt(_userinput)));
+                    }
                 }
                 else
                 {
-                    WeatherData weatherData = new WeatherData();
-                    weatherData.GetWeatherForecastForZip(convertedInputToInt);
+                    Console.WriteLine("Invalid Input!");
                 }
             }
-            else
-            {
-                Console.WriteLine("Invalid Input!");
-            }
-            GetUserInput();
         }
     }
 }

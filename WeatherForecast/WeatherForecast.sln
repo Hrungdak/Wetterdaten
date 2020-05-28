@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecast", "WeatherForecast\WeatherForecast.csproj", "{79227AC6-E356-4A1A-A3E2-58D55079E3C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functionalities", "Functionalities\Functionalities.csproj", "{94C6D915-8E7A-4D05-83AA-16AE5F6B3E7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Functionalities", "Functionalities\Functionalities.csproj", "{94C6D915-8E7A-4D05-83AA-16AE5F6B3E7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsForms", "WindowsForms\WindowsForms.csproj", "{7EDB82C4-E04F-4232-94B3-457D1B8A2310}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalitiesTest", "FunctionalitiesTest\FunctionalitiesTest.csproj", "{07745004-C2D3-458B-95E0-9D81CF080551}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{94C6D915-8E7A-4D05-83AA-16AE5F6B3E7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94C6D915-8E7A-4D05-83AA-16AE5F6B3E7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94C6D915-8E7A-4D05-83AA-16AE5F6B3E7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EDB82C4-E04F-4232-94B3-457D1B8A2310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EDB82C4-E04F-4232-94B3-457D1B8A2310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EDB82C4-E04F-4232-94B3-457D1B8A2310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EDB82C4-E04F-4232-94B3-457D1B8A2310}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07745004-C2D3-458B-95E0-9D81CF080551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07745004-C2D3-458B-95E0-9D81CF080551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07745004-C2D3-458B-95E0-9D81CF080551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07745004-C2D3-458B-95E0-9D81CF080551}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
