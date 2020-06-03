@@ -32,8 +32,8 @@
             this.searchbutton = new System.Windows.Forms.Button();
             this.exitbutton = new System.Windows.Forms.Button();
             this.outputfield = new System.Windows.Forms.TextBox();
-            this.heuteEinfachButton = new System.Windows.Forms.RadioButton();
-            this.heuteStuendlichButton = new System.Windows.Forms.RadioButton();
+            this.easyButton = new System.Windows.Forms.RadioButton();
+            this.stuendlichButton = new System.Windows.Forms.RadioButton();
             this.dreiTageButton = new System.Windows.Forms.RadioButton();
             this.vierzehnTageButton = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
@@ -73,32 +73,31 @@
             this.outputfield.Multiline = true;
             this.outputfield.Name = "outputfield";
             this.outputfield.ReadOnly = true;
-            this.outputfield.Size = new System.Drawing.Size(405, 129);
+            this.outputfield.Size = new System.Drawing.Size(709, 290);
             this.outputfield.TabIndex = 3;
             this.outputfield.Text = "Result";
             // 
-            // heuteEinfachButton
+            // easyButton
             // 
-            this.heuteEinfachButton.AutoSize = true;
-            this.heuteEinfachButton.Checked = true;
-            this.heuteEinfachButton.Location = new System.Drawing.Point(12, 98);
-            this.heuteEinfachButton.Name = "heuteEinfachButton";
-            this.heuteEinfachButton.Size = new System.Drawing.Size(193, 33);
-            this.heuteEinfachButton.TabIndex = 4;
-            this.heuteEinfachButton.TabStop = true;
-            this.heuteEinfachButton.Text = "Heute Einfach";
-            this.heuteEinfachButton.UseVisualStyleBackColor = true;
+            this.easyButton.AutoSize = true;
+            this.easyButton.Checked = true;
+            this.easyButton.Location = new System.Drawing.Point(12, 98);
+            this.easyButton.Name = "easyButton";
+            this.easyButton.Size = new System.Drawing.Size(123, 33);
+            this.easyButton.TabIndex = 4;
+            this.easyButton.TabStop = true;
+            this.easyButton.Text = "Einfach";
+            this.easyButton.UseVisualStyleBackColor = true;
             // 
-            // heuteStuendlichButton
+            // stuendlichButton
             // 
-            this.heuteStuendlichButton.AutoSize = true;
-            this.heuteStuendlichButton.Location = new System.Drawing.Point(12, 156);
-            this.heuteStuendlichButton.Name = "heuteStuendlichButton";
-            this.heuteStuendlichButton.Size = new System.Drawing.Size(213, 33);
-            this.heuteStuendlichButton.TabIndex = 5;
-            this.heuteStuendlichButton.TabStop = true;
-            this.heuteStuendlichButton.Text = "Heute Stündlich";
-            this.heuteStuendlichButton.UseVisualStyleBackColor = true;
+            this.stuendlichButton.AutoSize = true;
+            this.stuendlichButton.Location = new System.Drawing.Point(12, 156);
+            this.stuendlichButton.Name = "stuendlichButton";
+            this.stuendlichButton.Size = new System.Drawing.Size(143, 33);
+            this.stuendlichButton.TabIndex = 5;
+            this.stuendlichButton.Text = "Stündlich";
+            this.stuendlichButton.UseVisualStyleBackColor = true;
             // 
             // dreiTageButton
             // 
@@ -107,7 +106,6 @@
             this.dreiTageButton.Name = "dreiTageButton";
             this.dreiTageButton.Size = new System.Drawing.Size(120, 33);
             this.dreiTageButton.TabIndex = 6;
-            this.dreiTageButton.TabStop = true;
             this.dreiTageButton.Text = "3 Tage";
             this.dreiTageButton.UseVisualStyleBackColor = true;
             // 
@@ -118,7 +116,6 @@
             this.vierzehnTageButton.Name = "vierzehnTageButton";
             this.vierzehnTageButton.Size = new System.Drawing.Size(133, 33);
             this.vierzehnTageButton.TabIndex = 7;
-            this.vierzehnTageButton.TabStop = true;
             this.vierzehnTageButton.Text = "14 Tage";
             this.vierzehnTageButton.UseVisualStyleBackColor = true;
             // 
@@ -129,8 +126,8 @@
             this.ClientSize = new System.Drawing.Size(1107, 731);
             this.Controls.Add(this.vierzehnTageButton);
             this.Controls.Add(this.dreiTageButton);
-            this.Controls.Add(this.heuteStuendlichButton);
-            this.Controls.Add(this.heuteEinfachButton);
+            this.Controls.Add(this.stuendlichButton);
+            this.Controls.Add(this.easyButton);
             this.Controls.Add(this.outputfield);
             this.Controls.Add(this.exitbutton);
             this.Controls.Add(this.searchbutton);
@@ -148,8 +145,8 @@
         private System.Windows.Forms.Button searchbutton;
         private System.Windows.Forms.Button exitbutton;
         private System.Windows.Forms.TextBox outputfield;
-        private System.Windows.Forms.RadioButton heuteEinfachButton;
-        private System.Windows.Forms.RadioButton heuteStuendlichButton;
+        private System.Windows.Forms.RadioButton easyButton;
+        private System.Windows.Forms.RadioButton stuendlichButton;
         private System.Windows.Forms.RadioButton dreiTageButton;
         private System.Windows.Forms.RadioButton vierzehnTageButton;
     }

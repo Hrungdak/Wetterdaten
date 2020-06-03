@@ -41,8 +41,8 @@ namespace WeatherForecast.ConsoleInteractionWithUser
                     }
                     else
                     {
-                        WeatherData weatherData = new WeatherData();
-                        Console.WriteLine(weatherData.GetWeatherForecastForZip(_userInputValidator.ConvertStringToInt(_userinput)));
+                        Functionalities.WeatherForecast weatherForecast = new Functionalities.WeatherForecast();
+                        Console.WriteLine(weatherForecast.GetWeatherForecastForZip(_userInputValidator.ConvertStringToInt(_userinput), ForecastTypeEnum.easy));
                     }
                 }
                 else

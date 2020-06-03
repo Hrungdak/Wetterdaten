@@ -17,14 +17,29 @@ namespace WindowsForms
 
         private void searchbutton_Click(object sender, EventArgs e)
         {
-            if (heuteEinfachButton.Checked)
+            ForecastTypeEnum type = ForecastTypeEnum.easy;
+            if (stuendlichButton.Checked)
             {
-                WeatherData weatherData = new WeatherData();
-                outputfield.Text = weatherData.GetWeatherForecastForZip(int.Parse(userinputfield.Text));
+                type = ForecastTypeEnum.hourly;
             }
-            else
+            if (dreiTageButton.Checked)
             {
-                outputfield.Text = "Für diesen Menupunkt ist noch keine Funktionalität vorhanden.";
+                type = ForecastTypeEnum.threeDays;
+            }
+            if (vierzehnTageButton.Checked)
+            {
+                type = ForecastTypeEnum.fourteenDays;
+            }
+
+            WeatherForecast weatherForecast = new WeatherForecast();
+            Validation inputValidator = new Validation();
+            if (inputValidator.IsInteger(userinputfield.Text))
+            {
+                var result = weatherForecast
+                    .GetWeatherForecastForZip(
+                    inputValidator.ConvertStringToInt(userinputfield.Text),
+                    type);
+                outputfield.Text = string.Join(Environment.NewLine, result);
             }
         }
 

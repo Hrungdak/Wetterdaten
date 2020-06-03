@@ -1,9 +1,6 @@
 ﻿using FluentAssertions;
-
 using Functionalities;
-
 using NUnit.Framework;
-
 using System;
 
 namespace FunctionalitiesTest
