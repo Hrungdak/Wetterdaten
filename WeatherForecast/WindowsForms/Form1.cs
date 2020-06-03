@@ -31,6 +31,12 @@ namespace WindowsForms
                 type = ForecastTypeEnum.fourteenDays;
             }
 
+            TemperatureTypeEnum temperatureType = TemperatureTypeEnum.Celsius;
+            if (kelvinButton.Checked)
+            {
+                temperatureType = TemperatureTypeEnum.Kelvin;
+            }
+
             WeatherForecast weatherForecast = new WeatherForecast();
             Validation inputValidator = new Validation();
             if (inputValidator.IsInteger(userinputfield.Text))
@@ -38,7 +44,8 @@ namespace WindowsForms
                 var result = weatherForecast
                     .GetWeatherForecastForZip(
                     inputValidator.ConvertStringToInt(userinputfield.Text),
-                    type);
+                    type,
+                    temperatureType);
                 outputfield.Text = string.Join(Environment.NewLine, result);
             }
         }

@@ -36,6 +36,10 @@
             this.stuendlichButton = new System.Windows.Forms.RadioButton();
             this.dreiTageButton = new System.Windows.Forms.RadioButton();
             this.vierzehnTageButton = new System.Windows.Forms.RadioButton();
+            this.celsiusButton = new System.Windows.Forms.RadioButton();
+            this.kelvinButton = new System.Windows.Forms.RadioButton();
+            this.temperatureTypeGroupBox = new System.Windows.Forms.GroupBox();
+            this.temperatureTypeGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // userinputfield
@@ -119,11 +123,44 @@
             this.vierzehnTageButton.Text = "14 Tage";
             this.vierzehnTageButton.UseVisualStyleBackColor = true;
             // 
+            // celsiusButton
+            // 
+            this.celsiusButton.AutoSize = true;
+            this.celsiusButton.Checked = true;
+            this.celsiusButton.Location = new System.Drawing.Point(33, 45);
+            this.celsiusButton.Name = "celsiusButton";
+            this.celsiusButton.Size = new System.Drawing.Size(124, 33);
+            this.celsiusButton.TabIndex = 8;
+            this.celsiusButton.TabStop = true;
+            this.celsiusButton.Text = "Celsius";
+            this.celsiusButton.UseVisualStyleBackColor = true;
+            // 
+            // kelvinButton
+            // 
+            this.kelvinButton.AutoSize = true;
+            this.kelvinButton.Location = new System.Drawing.Point(33, 102);
+            this.kelvinButton.Name = "kelvinButton";
+            this.kelvinButton.Size = new System.Drawing.Size(110, 33);
+            this.kelvinButton.TabIndex = 9;
+            this.kelvinButton.Text = "Kelvin";
+            this.kelvinButton.UseVisualStyleBackColor = true;
+            // 
+            // temperatureTypeGroupBox
+            // 
+            this.temperatureTypeGroupBox.Controls.Add(this.celsiusButton);
+            this.temperatureTypeGroupBox.Controls.Add(this.kelvinButton);
+            this.temperatureTypeGroupBox.Location = new System.Drawing.Point(788, 54);
+            this.temperatureTypeGroupBox.Name = "temperatureTypeGroupBox";
+            this.temperatureTypeGroupBox.Size = new System.Drawing.Size(250, 196);
+            this.temperatureTypeGroupBox.TabIndex = 10;
+            this.temperatureTypeGroupBox.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 731);
+            this.Controls.Add(this.temperatureTypeGroupBox);
             this.Controls.Add(this.vierzehnTageButton);
             this.Controls.Add(this.dreiTageButton);
             this.Controls.Add(this.stuendlichButton);
@@ -134,6 +171,8 @@
             this.Controls.Add(this.userinputfield);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.temperatureTypeGroupBox.ResumeLayout(false);
+            this.temperatureTypeGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,6 +188,9 @@
         private System.Windows.Forms.RadioButton stuendlichButton;
         private System.Windows.Forms.RadioButton dreiTageButton;
         private System.Windows.Forms.RadioButton vierzehnTageButton;
+        private System.Windows.Forms.RadioButton celsiusButton;
+        private System.Windows.Forms.RadioButton kelvinButton;
+        private System.Windows.Forms.GroupBox temperatureTypeGroupBox;
     }
 }
 

@@ -15,7 +15,7 @@ namespace FunctionalitiesTest
             var sut = new WeatherForecast();
 
             //act
-            var result = sut.GetWeatherForecastForZip(12345, ForecastTypeEnum.easy);
+            var result = sut.GetWeatherForecastForZip(12345, ForecastTypeEnum.easy, TemperatureTypeEnum.Celsius);
 
             //assert
             result.Count.Should().Be(1);
@@ -28,7 +28,7 @@ namespace FunctionalitiesTest
             var sut = new WeatherForecast();
 
             //act
-            var result = sut.GetWeatherForecastForZip(12345, ForecastTypeEnum.hourly);
+            var result = sut.GetWeatherForecastForZip(12345, ForecastTypeEnum.hourly, TemperatureTypeEnum.Celsius);
 
             //assert
             result.Count.Should().Be(24);
@@ -41,7 +41,7 @@ namespace FunctionalitiesTest
             var sut = new WeatherForecast();
 
             //act
-            var result = sut.GetWeatherForecastForZip(12345, ForecastTypeEnum.threeDays);
+            var result = sut.GetWeatherForecastForZip(12345, ForecastTypeEnum.threeDays, TemperatureTypeEnum.Celsius);
 
             //assert
             result.Count.Should().Be(9);
@@ -54,7 +54,7 @@ namespace FunctionalitiesTest
             var sut = new WeatherForecast();
 
             //act
-            var result = sut.GetWeatherForecastForZip(12345, ForecastTypeEnum.fourteenDays);
+            var result = sut.GetWeatherForecastForZip(12345, ForecastTypeEnum.fourteenDays, TemperatureTypeEnum.Celsius);
 
             //assert
             result.Count.Should().Be(14);
