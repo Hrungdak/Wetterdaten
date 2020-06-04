@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace Functionalities
 {
@@ -17,6 +18,27 @@ namespace Functionalities
             }
 
             throw new ArgumentException();
+        }
+
+        public bool areUserSettingsValid(string userName, int zipcode, int forecastType, int temperatureType)
+        {
+            if (userName == null || userName == string.Empty)
+            {
+                return false;
+            }
+            if (zipcode < 0)
+            {
+                return false;
+            }
+            if (forecastType < 0)
+            {
+                return false;
+            }
+            if (temperatureType < 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
