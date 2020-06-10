@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using Functionalities;
 
@@ -35,6 +36,7 @@ namespace WindowsForms
             Properties.Settings.Default.userZipcode = _userZipCode;
             Properties.Settings.Default.userForecastPreference = _userForecastPreference;
             Properties.Settings.Default.userTemperatureTypePreference = _userTemperaturePreference;
+            SaveZipcodeList();
             Properties.Settings.Default.Save();
         }
 
@@ -84,6 +86,7 @@ namespace WindowsForms
 
         private void exitbutton_Click(object sender, EventArgs e)
         {
+            SaveSettings();
             this.Close();
         }
 
@@ -97,6 +100,11 @@ namespace WindowsForms
                 _userTemperaturePreference))
             {
                 SetUserPreferencesOptions();
+                LoadZipcodeList();
+                //ToDo for each Zipcode in the list, call RunWeatherforecast. Return Favourite Outputs in different TextLabel
+                // 1) make new Textlabel
+                // 2) Method RunWeatherforcecastFavourites
+                // 3) Method loops over the favouriteList and calls WeatherForecastForZip
                 RunWeatherForecastWithUserPreferences();
             }
         }
@@ -211,6 +219,45 @@ namespace WindowsForms
                     }
             }
             return temperaturetype;
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            if (favouritesList.SelectedItem != null)
+            {
+                favouritesList.Items.Remove(favouritesList.SelectedItem.ToString());
+                SaveZipcodeList();
+            }
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            Validation inputValidator = new Validation();
+            if (inputValidator.IsInteger(userinputfield.Text))
+            {
+                favouritesList.Items.Add(userinputfield.Text);
+                SaveZipcodeList();
+            }
+        }
+
+        private void SaveZipcodeList()
+        {
+            var indices = favouritesList.Items.Cast<string>().ToArray();
+
+            Properties.Settings.Default.userZipcodeList = string.Join(",", indices);
+        }
+
+        private void LoadZipcodeList()
+        {
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.userZipcodeList))
+            {
+                Properties.Settings.Default.userZipcodeList.Split(',')
+                    .ToList()
+                    .ForEach(item =>
+                    {
+                        favouritesList.Items.Add(item);
+                    });
+            }
         }
     }
 }

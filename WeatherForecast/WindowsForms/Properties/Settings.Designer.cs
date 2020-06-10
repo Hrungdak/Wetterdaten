@@ -70,5 +70,17 @@ namespace WindowsForms.Properties {
                 this["userTemperatureTypePreference"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string userZipcodeList {
+            get {
+                return ((string)(this["userZipcodeList"]));
+            }
+            set {
+                this["userZipcodeList"] = value;
+            }
+        }
     }
 }
