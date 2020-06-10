@@ -7,6 +7,7 @@ namespace Functionalities
     public enum TemperatureTypeEnum
     {
         Celsius,
-        Kelvin
+        Kelvin,
+        Fahrenheit
     }
 }

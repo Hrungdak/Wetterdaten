@@ -17,26 +17,46 @@ namespace Functionalities
 
         public List<string> GetWeatherForecastForZip(int zipcode, ForecastTypeEnum type, TemperatureTypeEnum temperatureType)
         {
+            ITemperatureStrategy strategy = null;
+            switch (temperatureType)
+            {
+                case TemperatureTypeEnum.Kelvin:
+                    {
+                        strategy = new KelvinStrategy();
+                        break;
+                    }
+                case TemperatureTypeEnum.Fahrenheit:
+                    {
+                        strategy = new FahrenheitStrategy();
+                        break;
+                    }
+                default:
+                    {
+                        strategy = new CelsiusStrategy();
+                        break;
+                    }
+            }
+
             switch (type)
             {
                 case ForecastTypeEnum.easy:
                     {
-                        return GetEasyForecast(zipcode, temperatureType);
+                        return GetEasyForecast(zipcode, strategy);
                     }
 
                 case ForecastTypeEnum.hourly:
                     {
-                        return GetHourlyForecast(zipcode, temperatureType);
+                        return GetHourlyForecast(zipcode, strategy);
                     }
 
                 case ForecastTypeEnum.threeDays:
                     {
-                        return GetThreeDayForecast(zipcode, temperatureType);
+                        return GetThreeDayForecast(zipcode, strategy);
                     }
 
                 case ForecastTypeEnum.fourteenDays:
                     {
-                        return GetFourteenDayForecast(zipcode, temperatureType);
+                        return GetFourteenDayForecast(zipcode, strategy);
                     }
             }
 
@@ -46,142 +66,74 @@ namespace Functionalities
                     };
         }
 
-        public List<string> GetEasyForecast(int zipcode, TemperatureTypeEnum temperatureType)
+        public List<string> GetEasyForecast(int zipcode, ITemperatureStrategy strategy)
         {
             List<string> forecast = new List<string>();
             DateTime time = DateTime.Today;
             Random random = new Random();
-            string temperatureTypeAsString;
-
-            int randomTemperature = random.Next(11, 30);
+            TemperatureInfo info = strategy.GetTemperatureFromCelsius(random.Next(11, 30));
             string randomCloudiness = Enum.GetName(typeof(CloudinessEnum), random.Next(0, Enum.GetNames(typeof(CloudinessEnum)).Length));
-            switch (temperatureType)
-            {
-                case TemperatureTypeEnum.Kelvin:
-                    {
-                        temperatureTypeAsString = " K";
-                        randomTemperature += 273;
-                        break;
-                    }
-                default:
-                    {
-                        temperatureTypeAsString = " °C";
-                        break;
-                    }
-            }
-
             forecast.Add(time.ToString("D") + ": In " + zipcode +
-                    " hat es " + randomTemperature + temperatureTypeAsString + ", und ist " + randomCloudiness);
+                    " hat es " + info.Temperature + " " + info.Display + ", und ist " + randomCloudiness);
             return forecast;
         }
 
-        public List<string> GetHourlyForecast(int zipcode, TemperatureTypeEnum temperatureType)
+        public List<string> GetHourlyForecast(int zipcode, ITemperatureStrategy strategy)
         {
             List<string> forecast = new List<string>();
             DateTime time = DateTime.Today;
             Random random = new Random();
-            string temperatureTypeAsString;
-
             for (int hourOfDay = 0; hourOfDay < 24; hourOfDay++)
             {
-                int randomTemperature = random.Next(11, 30);
                 string randomCloudiness = Enum.GetName(typeof(CloudinessEnum), random.Next(0, Enum.GetNames(typeof(CloudinessEnum)).Length));
-                switch (temperatureType)
-                {
-                    case TemperatureTypeEnum.Kelvin:
-                        {
-                            temperatureTypeAsString = " K";
-                            randomTemperature += 273;
-                            break;
-                        }
-                    default:
-                        {
-                            temperatureTypeAsString = " °C";
-                            break;
-                        }
-                }
-
+                TemperatureInfo info = strategy.GetTemperatureFromCelsius(random.Next(11, 30));
                 forecast.Add(time.ToString() + ": In " + zipcode +
-                    " hat es " + randomTemperature + temperatureTypeAsString + ", und ist " + randomCloudiness);
+                    " hat es " + info.Temperature + " " + info.Display + ", und ist " + randomCloudiness);
                 time = time.AddHours(1.0);
             }
 
             return forecast;
         }
 
-        public List<string> GetThreeDayForecast(int zipcode, TemperatureTypeEnum temperatureType)
+        public List<string> GetThreeDayForecast(int zipcode, ITemperatureStrategy strategy)
         {
             List<string> forecast = new List<string>();
             DateTime time = DateTime.Today;
             Random random = new Random();
-            string temperatureTypeAsString;
             for (int dayoffset = 0; dayoffset < 3; dayoffset++)
             {
-                int randomTemperature_vormittag = random.Next(11, 30);
-                int randomTemperature_nachmittag = random.Next(11, 30);
-                int randomTemperature_nacht = random.Next(11, 30);
+                TemperatureInfo info_vormittag = strategy.GetTemperatureFromCelsius(random.Next(11, 30));
+                TemperatureInfo info_nachmittag = strategy.GetTemperatureFromCelsius(random.Next(11, 30));
+                TemperatureInfo info_nacht = strategy.GetTemperatureFromCelsius(random.Next(11, 30));
                 string randomCloudiness_vormittag = Enum.GetName(typeof(CloudinessEnum), random.Next(0, Enum.GetNames(typeof(CloudinessEnum)).Length));
                 string randomCloudiness_nachmittag = Enum.GetName(typeof(CloudinessEnum), random.Next(0, Enum.GetNames(typeof(CloudinessEnum)).Length));
                 string randomCloudiness_nacht = Enum.GetName(typeof(CloudinessEnum), random.Next(0, Enum.GetNames(typeof(CloudinessEnum)).Length));
 
-                switch (temperatureType)
-                {
-                    case TemperatureTypeEnum.Kelvin:
-                        {
-                            temperatureTypeAsString = " K";
-                            randomTemperature_vormittag += 273;
-                            randomTemperature_nachmittag += 273;
-                            randomTemperature_nacht += 273;
-                            break;
-                        }
-                    default:
-                        {
-                            temperatureTypeAsString = " °C";
-                            break;
-                        }
-                }
-
                 forecast.Add(time.ToString("d") + ": In " + zipcode +
-                    " hat es vormittags " + randomTemperature_vormittag + temperatureTypeAsString + ", und ist " + randomCloudiness_vormittag);
+                    " hat es vormittags " + info_vormittag.Temperature + " " + info_vormittag.Display + ", und ist " + randomCloudiness_vormittag);
                 forecast.Add(time.ToString("d") + ": In " + zipcode +
-                    " hat es nachmittags " + randomTemperature_nachmittag + temperatureTypeAsString + ", und ist " + randomCloudiness_nachmittag);
+                    " hat es nachmittags " + info_nachmittag.Temperature + " " + info_nachmittag.Display + ", und ist " + randomCloudiness_nachmittag);
                 forecast.Add(time.ToString("d") + ": In " + zipcode +
-                    " hat es nachts " + randomTemperature_nacht + temperatureTypeAsString + ", und ist " + randomCloudiness_nacht);
+                    " hat es nachts " + info_nacht.Temperature + " " + info_nacht.Display + ", und ist " + randomCloudiness_nacht);
 
                 time = time.AddDays(1.0);
             }
             return forecast;
         }
 
-        public List<string> GetFourteenDayForecast(int zipcode, TemperatureTypeEnum temperatureType)
+        public List<string> GetFourteenDayForecast(int zipcode, ITemperatureStrategy strategy)
         {
             List<string> forecast = new List<string>();
             DateTime time = DateTime.Today;
             Random random = new Random();
-            string temperatureTypeAsString;
 
             for (int dayoffset = 0; dayoffset < 14; dayoffset++)
             {
-                int randomTemperature = random.Next(11, 30);
+                TemperatureInfo info = strategy.GetTemperatureFromCelsius(random.Next(11, 30));
                 string randomCloudiness = Enum.GetName(typeof(CloudinessEnum), random.Next(0, Enum.GetNames(typeof(CloudinessEnum)).Length));
 
-                switch (temperatureType)
-                {
-                    case TemperatureTypeEnum.Kelvin:
-                        {
-                            temperatureTypeAsString = " K";
-                            randomTemperature += 273;
-                            break;
-                        }
-                    default:
-                        {
-                            temperatureTypeAsString = " °C";
-                            break;
-                        }
-                }
-
                 forecast.Add("In " + zipcode + ": " + time.ToString("D", CultureInfo.CreateSpecificCulture("de-DE"))
-                    + " hat es " + randomTemperature + temperatureTypeAsString + ", und ist " + randomCloudiness);
+                    + " hat es " + info.Temperature + " " + info.Display + ", und ist " + randomCloudiness);
 
                 time = time.AddDays(1.0);
             }

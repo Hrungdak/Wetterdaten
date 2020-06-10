@@ -30,11 +30,11 @@ namespace Functionalities
             {
                 return false;
             }
-            if (forecastType < 0)
+            if (forecastType < 0 || forecastType > Enum.GetNames(typeof(ForecastTypeEnum)).Length)
             {
                 return false;
             }
-            if (temperatureType < 0)
+            if (temperatureType < 0 || temperatureType > Enum.GetNames(typeof(TemperatureTypeEnum)).Length)
             {
                 return false;
             }

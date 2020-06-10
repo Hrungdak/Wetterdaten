@@ -33,13 +33,15 @@
             this.exitbutton = new System.Windows.Forms.Button();
             this.outputfield = new System.Windows.Forms.TextBox();
             this.easyButton = new System.Windows.Forms.RadioButton();
-            this.stuendlichButton = new System.Windows.Forms.RadioButton();
-            this.dreiTageButton = new System.Windows.Forms.RadioButton();
-            this.vierzehnTageButton = new System.Windows.Forms.RadioButton();
+            this.hourlyButton = new System.Windows.Forms.RadioButton();
+            this.threeDayButton = new System.Windows.Forms.RadioButton();
+            this.fourteenDayButton = new System.Windows.Forms.RadioButton();
             this.celsiusButton = new System.Windows.Forms.RadioButton();
             this.kelvinButton = new System.Windows.Forms.RadioButton();
             this.temperatureTypeGroupBox = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.temperatureTypeGroupBox.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // userinputfield
@@ -53,7 +55,7 @@
             // 
             // searchbutton
             // 
-            this.searchbutton.Location = new System.Drawing.Point(12, 12);
+            this.searchbutton.Location = new System.Drawing.Point(724, 198);
             this.searchbutton.Name = "searchbutton";
             this.searchbutton.Size = new System.Drawing.Size(127, 49);
             this.searchbutton.TabIndex = 1;
@@ -73,11 +75,14 @@
             // 
             // outputfield
             // 
-            this.outputfield.Location = new System.Drawing.Point(276, 289);
+            this.outputfield.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.outputfield.Location = new System.Drawing.Point(276, 288);
             this.outputfield.Multiline = true;
             this.outputfield.Name = "outputfield";
             this.outputfield.ReadOnly = true;
-            this.outputfield.Size = new System.Drawing.Size(709, 290);
+            this.outputfield.Size = new System.Drawing.Size(893, 359);
             this.outputfield.TabIndex = 3;
             this.outputfield.Text = "Result";
             // 
@@ -85,7 +90,7 @@
             // 
             this.easyButton.AutoSize = true;
             this.easyButton.Checked = true;
-            this.easyButton.Location = new System.Drawing.Point(12, 98);
+            this.easyButton.Location = new System.Drawing.Point(17, 51);
             this.easyButton.Name = "easyButton";
             this.easyButton.Size = new System.Drawing.Size(123, 33);
             this.easyButton.TabIndex = 4;
@@ -93,35 +98,35 @@
             this.easyButton.Text = "Einfach";
             this.easyButton.UseVisualStyleBackColor = true;
             // 
-            // stuendlichButton
+            // hourlyButton
             // 
-            this.stuendlichButton.AutoSize = true;
-            this.stuendlichButton.Location = new System.Drawing.Point(12, 156);
-            this.stuendlichButton.Name = "stuendlichButton";
-            this.stuendlichButton.Size = new System.Drawing.Size(143, 33);
-            this.stuendlichButton.TabIndex = 5;
-            this.stuendlichButton.Text = "Stündlich";
-            this.stuendlichButton.UseVisualStyleBackColor = true;
+            this.hourlyButton.AutoSize = true;
+            this.hourlyButton.Location = new System.Drawing.Point(17, 99);
+            this.hourlyButton.Name = "hourlyButton";
+            this.hourlyButton.Size = new System.Drawing.Size(143, 33);
+            this.hourlyButton.TabIndex = 5;
+            this.hourlyButton.Text = "Stündlich";
+            this.hourlyButton.UseVisualStyleBackColor = true;
             // 
-            // dreiTageButton
+            // threeDayButton
             // 
-            this.dreiTageButton.AutoSize = true;
-            this.dreiTageButton.Location = new System.Drawing.Point(12, 217);
-            this.dreiTageButton.Name = "dreiTageButton";
-            this.dreiTageButton.Size = new System.Drawing.Size(120, 33);
-            this.dreiTageButton.TabIndex = 6;
-            this.dreiTageButton.Text = "3 Tage";
-            this.dreiTageButton.UseVisualStyleBackColor = true;
+            this.threeDayButton.AutoSize = true;
+            this.threeDayButton.Location = new System.Drawing.Point(17, 148);
+            this.threeDayButton.Name = "threeDayButton";
+            this.threeDayButton.Size = new System.Drawing.Size(120, 33);
+            this.threeDayButton.TabIndex = 6;
+            this.threeDayButton.Text = "3 Tage";
+            this.threeDayButton.UseVisualStyleBackColor = true;
             // 
-            // vierzehnTageButton
+            // fourteenDayButton
             // 
-            this.vierzehnTageButton.AutoSize = true;
-            this.vierzehnTageButton.Location = new System.Drawing.Point(12, 273);
-            this.vierzehnTageButton.Name = "vierzehnTageButton";
-            this.vierzehnTageButton.Size = new System.Drawing.Size(133, 33);
-            this.vierzehnTageButton.TabIndex = 7;
-            this.vierzehnTageButton.Text = "14 Tage";
-            this.vierzehnTageButton.UseVisualStyleBackColor = true;
+            this.fourteenDayButton.AutoSize = true;
+            this.fourteenDayButton.Location = new System.Drawing.Point(17, 205);
+            this.fourteenDayButton.Name = "fourteenDayButton";
+            this.fourteenDayButton.Size = new System.Drawing.Size(133, 33);
+            this.fourteenDayButton.TabIndex = 7;
+            this.fourteenDayButton.Text = "14 Tage";
+            this.fourteenDayButton.UseVisualStyleBackColor = true;
             // 
             // celsiusButton
             // 
@@ -147,24 +152,36 @@
             // 
             // temperatureTypeGroupBox
             // 
+            this.temperatureTypeGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.temperatureTypeGroupBox.Controls.Add(this.celsiusButton);
             this.temperatureTypeGroupBox.Controls.Add(this.kelvinButton);
-            this.temperatureTypeGroupBox.Location = new System.Drawing.Point(788, 54);
+            this.temperatureTypeGroupBox.Location = new System.Drawing.Point(919, 54);
             this.temperatureTypeGroupBox.Name = "temperatureTypeGroupBox";
             this.temperatureTypeGroupBox.Size = new System.Drawing.Size(250, 196);
             this.temperatureTypeGroupBox.TabIndex = 10;
             this.temperatureTypeGroupBox.TabStop = false;
+            this.temperatureTypeGroupBox.Text = "Temperature Type";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.easyButton);
+            this.groupBox1.Controls.Add(this.hourlyButton);
+            this.groupBox1.Controls.Add(this.fourteenDayButton);
+            this.groupBox1.Controls.Add(this.threeDayButton);
+            this.groupBox1.Location = new System.Drawing.Point(12, 54);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(190, 295);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Forecast Type";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1107, 731);
+            this.ClientSize = new System.Drawing.Size(1238, 861);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.temperatureTypeGroupBox);
-            this.Controls.Add(this.vierzehnTageButton);
-            this.Controls.Add(this.dreiTageButton);
-            this.Controls.Add(this.stuendlichButton);
-            this.Controls.Add(this.easyButton);
             this.Controls.Add(this.outputfield);
             this.Controls.Add(this.exitbutton);
             this.Controls.Add(this.searchbutton);
@@ -174,6 +191,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.temperatureTypeGroupBox.ResumeLayout(false);
             this.temperatureTypeGroupBox.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,12 +205,13 @@
         private System.Windows.Forms.Button exitbutton;
         private System.Windows.Forms.TextBox outputfield;
         private System.Windows.Forms.RadioButton easyButton;
-        private System.Windows.Forms.RadioButton stuendlichButton;
-        private System.Windows.Forms.RadioButton dreiTageButton;
-        private System.Windows.Forms.RadioButton vierzehnTageButton;
+        private System.Windows.Forms.RadioButton hourlyButton;
+        private System.Windows.Forms.RadioButton threeDayButton;
+        private System.Windows.Forms.RadioButton fourteenDayButton;
         private System.Windows.Forms.RadioButton celsiusButton;
         private System.Windows.Forms.RadioButton kelvinButton;
         private System.Windows.Forms.GroupBox temperatureTypeGroupBox;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

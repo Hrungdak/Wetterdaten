@@ -83,9 +83,74 @@ namespace FunctionalitiesTest
         {
             var sut = new Validation();
 
-            int result = sut.ConvertStringToInt("12345");
+            var result = sut.ConvertStringToInt("12345");
 
             result.Should().Be(12345);
+        }
+
+        [Test]
+        public void areUserSettingsValid_UsernameIsEmpty_ReturnFalse()
+        {
+            //arr
+            var sut = new Validation();
+
+            //act
+            var result = sut.areUserSettingsValid("", 55555, 1, 1);
+
+            //assert
+            result.Should().Be(false);
+        }
+
+        [Test]
+        public void areUserSettingsValid_UsernameIsNull_ReturnFalse()
+        {
+            //arr
+            var sut = new Validation();
+
+            //act
+            var result = sut.areUserSettingsValid(null, 55555, 1, 1);
+
+            //assert
+            result.Should().Be(false);
+        }
+
+        [Test]
+        public void areUserSettingsValid_InvalidZipcode_ReturnFalse()
+        {
+            //arr
+            var sut = new Validation();
+
+            //act
+            var result = sut.areUserSettingsValid("TestUser", -1, 1, 1);
+
+            //assert
+            result.Should().Be(false);
+        }
+
+        [Test]
+        public void areUserSettingsValid_InvalidForecastType_ReturnFalse()
+        {
+            //arr
+            var sut = new Validation();
+
+            //act
+            var result = sut.areUserSettingsValid("TestUser", 55555, -1, 1);
+
+            //assert
+            result.Should().Be(false);
+        }
+
+        [Test]
+        public void areUserSettingsValid_InvalidTempertureType_ReturnFalse()
+        {
+            //arr
+            var sut = new Validation();
+
+            //act
+            var result = sut.areUserSettingsValid("TestUser", 55555, 1, -1);
+
+            //assert
+            result.Should().Be(false);
         }
     }
 }
