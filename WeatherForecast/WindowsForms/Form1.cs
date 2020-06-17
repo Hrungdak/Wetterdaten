@@ -69,15 +69,24 @@ namespace WindowsForms
             }
 
             WeatherForecast weatherForecast = new WeatherForecast();
+            WeatherForecastDomainService weatherService = new WeatherForecastDomainService();
             Validation inputValidator = new Validation();
             if (inputValidator.IsInteger(userinputfield.Text))
             {
+                //ToDo: Give Correct Date String as Parameter
                 _userZipCode = inputValidator.ConvertStringToInt(userinputfield.Text);
-                var result = weatherForecast
-                    .GetWeatherForecastForZip(
+                //var result = weatherForecast
+                //    .GetWeatherForecastForZip(
+                //    _userZipCode,
+                //    type,
+                //    temperatureType);
+                var result = weatherService
+                    .GetForecast(
                     _userZipCode,
-                    type,
-                    temperatureType);
+                    "05/01/2009 14:57:32",
+                    temperatureType,
+                    type);
+
                 outputfield.Text = string.Join(Environment.NewLine, result);
             }
 
@@ -118,12 +127,15 @@ namespace WindowsForms
 
         private void RunWeatherForecastWithUserPreferences()
         {
-            WeatherForecast weatherForecast = new WeatherForecast();
-            var result = weatherForecast
-                .GetWeatherForecastForZip(
+            //ToDo: Give Correct Date String as Parameter
+            //WeatherForecast weatherForecast = new WeatherForecast();
+            WeatherForecastDomainService weatherService = new WeatherForecastDomainService();
+            var result = weatherService
+                .GetForecast(
                 GetZipcodeFromSettings(),
-                GetForecastTypeFromSettings(),
-                GetTemperatureTypeFromSettings());
+                "05/01/2009 14:57:32",
+                GetTemperatureTypeFromSettings(),
+                GetForecastTypeFromSettings());
             outputfield.Text = string.Join(Environment.NewLine, result);
         }
 

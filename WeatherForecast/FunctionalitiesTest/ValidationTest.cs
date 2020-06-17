@@ -152,5 +152,31 @@ namespace FunctionalitiesTest
             //assert
             result.Should().Be(false);
         }
+
+        [Test]
+        public void isZipcode_InvalidZipcode_returnsFalse()
+        {
+            //arr
+            var sut = new Validation();
+
+            //act
+            var result = sut.isZipcode(0);
+
+            //assert
+            result.Should().Be(false);
+        }
+
+        [Test]
+        public void isStringADate_invalidString_returnsFalse()
+        {
+            //arr
+            var sut = new Validation();
+
+            //act
+            var result = sut.isStringADate("Test");
+
+            //assert
+            result.Should().Be(false);
+        }
     }
 }

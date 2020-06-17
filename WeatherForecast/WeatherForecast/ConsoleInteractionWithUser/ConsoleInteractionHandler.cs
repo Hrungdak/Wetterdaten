@@ -42,7 +42,7 @@ namespace WeatherForecast.ConsoleInteractionWithUser
                     else
                     {
                         Functionalities.WeatherForecast weatherForecast = new Functionalities.WeatherForecast();
-                        Console.WriteLine(weatherForecast.GetWeatherForecastForZip(_userInputValidator.ConvertStringToInt(_userinput), ForecastTypeEnum.easy));
+                        //Console.WriteLine(weatherForecast.GetWeatherForecastForZip(_userInputValidator.ConvertStringToInt(_userinput), ForecastTypeEnum.easy));
                     }
                 }
                 else

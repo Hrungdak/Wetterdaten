@@ -40,5 +40,24 @@ namespace Functionalities
             }
             return true;
         }
+
+        public bool isZipcode(int zipcode)
+        {
+            if (zipcode < 00501 || zipcode > 99950)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool isStringADate(string date)
+        {
+            DateTime dateTime;
+            if (DateTime.TryParse(date, out dateTime))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
