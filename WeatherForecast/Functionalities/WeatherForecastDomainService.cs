@@ -26,12 +26,44 @@ namespace Functionalities
 
         private IForecastStrategy GetForecastStrategy(ForecastTypeEnum forecastType)
         {
-            return new ForecastStrategy(forecastType);
+            switch (forecastType)
+            {
+                default:
+                    {
+                        return new EasyForecastStrategy();
+                    }
+                case ForecastTypeEnum.hourly:
+                    {
+                        return new HourlyForecastStrategy();
+                    }
+                case ForecastTypeEnum.threeDays:
+                    {
+                        return new ThreeDayForecastStrategy();
+                    }
+                case ForecastTypeEnum.fourteenDays:
+                    {
+                        return new FourteenDayForecastStrategy();
+                    }
+            }
         }
 
         private ITemperatureStrategy GetTemperatureStrategy(TemperatureTypeEnum temperatureType)
         {
-            return new TemperatureStrategy(temperatureType);
+            switch (temperatureType)
+            {
+                case TemperatureTypeEnum.Kelvin:
+                    {
+                        return new KelvinStrategy();
+                    }
+                case TemperatureTypeEnum.Fahrenheit:
+                    {
+                        return new FahrenheitStrategy();
+                    }
+                default:
+                    {
+                        return new CelsiusStrategy();
+                    }
+            }
         }
 
         private void CheckParametersValid(int zipcode, string datum, TemperatureTypeEnum temperatureType, ForecastTypeEnum forecastType)
