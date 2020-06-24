@@ -68,12 +68,12 @@ namespace WindowsForms
                 _userTemperaturePreference = (int)TemperatureTypeEnum.Kelvin;
             }
 
-            WeatherForecast weatherForecast = new WeatherForecast();
+            //WeatherForecast weatherForecast = new WeatherForecast();
             WeatherForecastDomainService weatherService = new WeatherForecastDomainService();
             Validation inputValidator = new Validation();
             if (inputValidator.IsInteger(userinputfield.Text))
             {
-                //ToDo: Give Correct Date String as Parameter
+                //ToDo: Give Correct Date String as Parameter if necessary?
                 _userZipCode = inputValidator.ConvertStringToInt(userinputfield.Text);
                 //var result = weatherForecast
                 //    .GetWeatherForecastForZip(
@@ -114,7 +114,29 @@ namespace WindowsForms
                 // 1) make new Textlabel
                 // 2) Method RunWeatherforcecastFavourites
                 // 3) Method loops over the favouriteList and calls WeatherForecastForZip
+                GetWeatherForecastForFavourites();
                 RunWeatherForecastWithUserPreferences();
+            }
+        }
+
+        private void GetWeatherForecastForFavourites()
+        {
+            foreach (string zipcodeString in favouritesList.Items)
+            {
+                //ToDo Lopp over Favouritelist and call GetForecast
+                Validation validation = new Validation();
+                WeatherForecastDomainService weatherService = new WeatherForecastDomainService();
+                if (validation.IsInteger(zipcodeString))
+                {
+                    int zipcode = validation.ConvertStringToInt(zipcodeString);
+                    var result = weatherService
+                        .GetForecast(
+                        zipcode,
+                        "05/01/2009 14:57:32",
+                        GetTemperatureTypeFromSettings(),
+                        GetForecastTypeFromSettings());
+                    outputFavourites.Text = string.Join(Environment.NewLine, result);
+                }
             }
         }
 

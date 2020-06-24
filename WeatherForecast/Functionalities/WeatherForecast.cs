@@ -22,7 +22,6 @@ namespace Functionalities
 
         //public List<string> GetWeatherForecastForZip(int zipcode, ForecastTypeEnum type, TemperatureTypeEnum temperatureType)
         //{
-        //    //ToDo Get rid of all switch/cases.
         //    ITemperatureStrategy strategy = null;
         //    switch (temperatureType)
         //    {
