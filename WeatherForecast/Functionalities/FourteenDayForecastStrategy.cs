@@ -4,26 +4,17 @@ using System.Globalization;
 
 namespace Functionalities
 {
-    internal class FourteenDayForecastStrategy : IForecastStrategy
+    public class FourteenDayForecastStrategy : IForecastStrategy
     {
-        public List<string> GetForecastForStrategy(int zipcode, ITemperatureStrategy temperatureStrategy)
+        List<string> IForecastStrategy.GetForecastStrategy(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
         {
-            List<string> forecast = new List<string>();
-            DateTime time = DateTime.Today;
-            Random random = new Random();
-
-            for (int dayoffset = 0; dayoffset < 14; dayoffset++)
+            List<string> result = new List<string>();
+            WeatherForecast weatherForecast = new WeatherForecast();
+            for (int fourteenDayCounter = 0; fourteenDayCounter < 14; fourteenDayCounter++)
             {
-                TemperatureInfo info = temperatureStrategy.GetTemperatureFromCelsius(random.Next(11, 30));
-                string randomCloudiness = Enum.GetName(typeof(CloudinessEnum), random.Next(0, Enum.GetNames(typeof(CloudinessEnum)).Length));
-
-                forecast.Add("In " + zipcode + ": " + time.ToString("D", CultureInfo.CreateSpecificCulture("de-DE"))
-                    + " hat es " + info.Temperature + " " + info.Display + ", und ist " + randomCloudiness);
-
-                time = time.AddDays(1.0);
+                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, date.AddDays(fourteenDayCounter)));
             }
-
-            return forecast;
+            return result;
         }
     }
 }

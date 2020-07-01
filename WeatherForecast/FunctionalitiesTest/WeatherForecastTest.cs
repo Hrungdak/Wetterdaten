@@ -8,7 +8,7 @@ namespace FunctionalitiesTest
     [TestFixture]
     public class WeatherForecastTest
     {
-        //ToDo: Unit Tests for GetWeatherForecastRefactored
+        //ToDo: Unit Tests for Refactored GetWeatherForecast
 
         //[Test]
         //public void GetWeatherForecastForZip_ZipcodeAndTypeOfForecastIsEasy_ReturnsForecastForToday()

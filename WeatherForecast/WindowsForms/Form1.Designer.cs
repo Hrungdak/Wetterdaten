@@ -43,7 +43,6 @@
             this.favouritesList = new System.Windows.Forms.ListBox();
             this.addButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
-            this.outputFavourites = new System.Windows.Forms.TextBox();
             this.temperatureTypeGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +56,6 @@
             this.userinputfield.Size = new System.Drawing.Size(606, 35);
             this.userinputfield.TabIndex = 0;
             this.userinputfield.Text = "Enter zipcode";
-            this.userinputfield.TextChanged += new System.EventHandler(this.userinput_TextChanged);
             // 
             // searchbutton
             // 
@@ -164,7 +162,7 @@
             this.temperatureTypeGroupBox.Controls.Add(this.kelvinButton);
             this.temperatureTypeGroupBox.Location = new System.Drawing.Point(27, 374);
             this.temperatureTypeGroupBox.Name = "temperatureTypeGroupBox";
-            this.temperatureTypeGroupBox.Size = new System.Drawing.Size(247, 157);
+            this.temperatureTypeGroupBox.Size = new System.Drawing.Size(288, 256);
             this.temperatureTypeGroupBox.TabIndex = 10;
             this.temperatureTypeGroupBox.TabStop = false;
             this.temperatureTypeGroupBox.Text = "Temperature Type";
@@ -190,7 +188,7 @@
             this.favouritesList.ItemHeight = 29;
             this.favouritesList.Location = new System.Drawing.Point(1261, 206);
             this.favouritesList.Name = "favouritesList";
-            this.favouritesList.Size = new System.Drawing.Size(195, 207);
+            this.favouritesList.Size = new System.Drawing.Size(195, 497);
             this.favouritesList.TabIndex = 12;
             // 
             // addButton
@@ -215,20 +213,11 @@
             this.removeButton.UseVisualStyleBackColor = true;
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
-            // outputFavourites
-            // 
-            this.outputFavourites.Location = new System.Drawing.Point(1248, 453);
-            this.outputFavourites.Multiline = true;
-            this.outputFavourites.Name = "outputFavourites";
-            this.outputFavourites.Size = new System.Drawing.Size(355, 277);
-            this.outputFavourites.TabIndex = 15;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1642, 1007);
-            this.Controls.Add(this.outputFavourites);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.favouritesList);
@@ -267,7 +256,6 @@
         private System.Windows.Forms.ListBox favouritesList;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button removeButton;
-        private System.Windows.Forms.TextBox outputFavourites;
     }
 }
 

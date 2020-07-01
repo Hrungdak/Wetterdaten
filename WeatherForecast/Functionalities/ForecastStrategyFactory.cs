@@ -4,16 +4,9 @@ using System.Text;
 
 namespace Functionalities
 {
-    public class ForecastStrategy : IForecastStrategy
+    public static class ForecastStrategyFactory
     {
-        private IForecastStrategy _strategy;
-
-        public ForecastStrategy(ForecastTypeEnum forecastType)
-        {
-            _strategy = GetStrategy(forecastType);
-        }
-
-        private IForecastStrategy GetStrategy(ForecastTypeEnum forecastType)
+        public static IForecastStrategy GetForecastStrategy(ForecastTypeEnum forecastType)
         {
             switch (forecastType)
             {
@@ -34,12 +27,6 @@ namespace Functionalities
                         return new FourteenDayForecastStrategy();
                     }
             }
-        }
-
-        public List<string> GetForecastForStrategy(int zipcode, ITemperatureStrategy temperatureStrategy)
-        {
-            //ToDo ?????
-            return _strategy.GetForecastForStrategy(zipcode, temperatureStrategy);
         }
     }
 }

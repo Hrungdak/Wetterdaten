@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Windows.Forms;
 using Functionalities;
 
@@ -18,10 +19,8 @@ namespace WindowsForms
             greetingUser.Show();
             this.Opacity = 0;
             this.Visible = false;
-        }
-
-        private void userinput_TextChanged(object sender, EventArgs e)
-        {
+            //ToDo Create Httpclient via HttpFactory
+            HttpClient httpClient = HttpClientFactory.CreateClient();
         }
 
         public void GetUserSettings()
@@ -68,12 +67,11 @@ namespace WindowsForms
                 _userTemperaturePreference = (int)TemperatureTypeEnum.Kelvin;
             }
 
-            //WeatherForecast weatherForecast = new WeatherForecast();
             WeatherForecastDomainService weatherService = new WeatherForecastDomainService();
             Validation inputValidator = new Validation();
             if (inputValidator.IsInteger(userinputfield.Text))
             {
-                //ToDo: Give Correct Date String as Parameter if necessary?
+                //ToDo: Give Correct Date as Parameter
                 _userZipCode = inputValidator.ConvertStringToInt(userinputfield.Text);
                 //var result = weatherForecast
                 //    .GetWeatherForecastForZip(
@@ -83,7 +81,7 @@ namespace WindowsForms
                 var result = weatherService
                     .GetForecast(
                     _userZipCode,
-                    "05/01/2009 14:57:32",
+                    DateTime.Now,
                     temperatureType,
                     type);
 
@@ -114,29 +112,7 @@ namespace WindowsForms
                 // 1) make new Textlabel
                 // 2) Method RunWeatherforcecastFavourites
                 // 3) Method loops over the favouriteList and calls WeatherForecastForZip
-                GetWeatherForecastForFavourites();
                 RunWeatherForecastWithUserPreferences();
-            }
-        }
-
-        private void GetWeatherForecastForFavourites()
-        {
-            foreach (string zipcodeString in favouritesList.Items)
-            {
-                //ToDo Lopp over Favouritelist and call GetForecast
-                Validation validation = new Validation();
-                WeatherForecastDomainService weatherService = new WeatherForecastDomainService();
-                if (validation.IsInteger(zipcodeString))
-                {
-                    int zipcode = validation.ConvertStringToInt(zipcodeString);
-                    var result = weatherService
-                        .GetForecast(
-                        zipcode,
-                        "05/01/2009 14:57:32",
-                        GetTemperatureTypeFromSettings(),
-                        GetForecastTypeFromSettings());
-                    outputFavourites.Text = string.Join(Environment.NewLine, result);
-                }
             }
         }
 
@@ -149,13 +125,13 @@ namespace WindowsForms
 
         private void RunWeatherForecastWithUserPreferences()
         {
-            //ToDo: Give Correct Date String as Parameter
+            //ToDo: Give Correct Date as Parameter
             //WeatherForecast weatherForecast = new WeatherForecast();
             WeatherForecastDomainService weatherService = new WeatherForecastDomainService();
             var result = weatherService
                 .GetForecast(
                 GetZipcodeFromSettings(),
-                "05/01/2009 14:57:32",
+                DateTime.Now,
                 GetTemperatureTypeFromSettings(),
                 GetForecastTypeFromSettings());
             outputfield.Text = string.Join(Environment.NewLine, result);

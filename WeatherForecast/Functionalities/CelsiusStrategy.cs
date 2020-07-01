@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Functionalities
 {
-    internal class CelsiusStrategy : ITemperatureStrategy
+    public class CelsiusStrategy : ITemperatureStrategy
     {
         public TemperatureInfo GetTemperatureFromCelsius(float celsiusTemperature)
         {
