@@ -1,9 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using Functionalities.DomainLogic;
+using Functionalities.Enums;
 
+using System;
+using System.Linq;
 //using System.Net.Http;
 using System.Windows.Forms;
-using Functionalities;
 
 namespace WindowsForms
 {
@@ -26,18 +27,18 @@ namespace WindowsForms
 
         public void GetUserSettings()
         {
-            _userZipCode = Properties.Settings.Default.userZipcode;
-            _userForecastPreference = Properties.Settings.Default.userForecastPreference;
-            _userTemperaturePreference = Properties.Settings.Default.userTemperatureTypePreference;
+            _userZipCode = Settings.Default.userZipcode;
+            _userForecastPreference = Settings.Default.userForecastPreference;
+            _userTemperaturePreference = Settings.Default.userTemperatureTypePreference;
         }
 
         public void SaveSettings()
         {
-            Properties.Settings.Default.userZipcode = _userZipCode;
-            Properties.Settings.Default.userForecastPreference = _userForecastPreference;
-            Properties.Settings.Default.userTemperatureTypePreference = _userTemperaturePreference;
+            Settings.Default.userZipcode = _userZipCode;
+            Settings.Default.userForecastPreference = _userForecastPreference;
+            Settings.Default.userTemperatureTypePreference = _userTemperaturePreference;
             SaveZipcodeList();
-            Properties.Settings.Default.Save();
+            Settings.Default.Save();
         }
 
         private void searchbutton_Click(object sender, EventArgs e)
@@ -69,7 +70,7 @@ namespace WindowsForms
             }
 
             WeatherForecastDomainService weatherService = new WeatherForecastDomainService();
-            Validation inputValidator = new Validation();
+            var inputValidator = new DomainValidation();
             if (inputValidator.IsInteger(userinputfield.Text))
             {
                 //ToDo: Give Correct Date as Parameter
@@ -101,8 +102,8 @@ namespace WindowsForms
         private void Form1_Load(object sender, EventArgs e)
         {
             GetUserSettings();
-            Validation validation = new Validation();
-            if (validation.areUserSettingsValid(Properties.Settings.Default.userName,
+            var validation = new DomainValidation();
+            if (validation.areUserSettingsValid(Settings.Default.userName,
                 _userZipCode,
                 _userForecastPreference,
                 _userTemperaturePreference))
@@ -140,7 +141,7 @@ namespace WindowsForms
 
         private int GetZipcodeFromSettings()
         {
-            return Properties.Settings.Default.userZipcode;
+            return Settings.Default.userZipcode;
         }
 
         private void SetForecastPreferenceButton()
@@ -182,7 +183,7 @@ namespace WindowsForms
         private ForecastTypeEnum GetForecastTypeFromSettings()
         {
             ForecastTypeEnum type = ForecastTypeEnum.easy;
-            switch (Properties.Settings.Default.userForecastPreference)
+            switch (Settings.Default.userForecastPreference)
             {
                 case 0:
                     {
@@ -211,7 +212,7 @@ namespace WindowsForms
         private TemperatureTypeEnum GetTemperatureTypeFromSettings()
         {
             TemperatureTypeEnum temperaturetype = TemperatureTypeEnum.Celsius;
-            switch (Properties.Settings.Default.userTemperatureTypePreference)
+            switch (Settings.Default.userTemperatureTypePreference)
             {
                 case 0:
                     {
@@ -243,7 +244,7 @@ namespace WindowsForms
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            Validation inputValidator = new Validation();
+            var inputValidator = new DomainValidation();
             if (inputValidator.IsInteger(userinputfield.Text))
             {
                 favouritesList.Items.Add(userinputfield.Text);
@@ -255,14 +256,14 @@ namespace WindowsForms
         {
             var indices = favouritesList.Items.Cast<string>().ToArray();
 
-            Properties.Settings.Default.userZipcodeList = string.Join(",", indices);
+            Settings.Default.userZipcodeList = string.Join(",", indices);
         }
 
         private void LoadZipcodeList()
         {
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.userZipcodeList))
+            if (!string.IsNullOrEmpty(Settings.Default.userZipcodeList))
             {
-                Properties.Settings.Default.userZipcodeList.Split(',')
+                Settings.Default.userZipcodeList.Split(',')
                     .ToList()
                     .ForEach(item =>
                     {

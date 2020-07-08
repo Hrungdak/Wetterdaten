@@ -1,4 +1,4 @@
-﻿namespace WindowsForms.Properties {
+﻿namespace WindowsForms {
     
     
     // This class allows you to handle specific events on the settings class:

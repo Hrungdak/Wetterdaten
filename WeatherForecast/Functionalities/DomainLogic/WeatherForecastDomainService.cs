@@ -1,8 +1,10 @@
-﻿using Functionalities.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Functionalities.Contracts;
+using Functionalities.Enums;
+using Functionalities.Exceptions;
 
-namespace Functionalities
+namespace Functionalities.DomainLogic
 {
     public class WeatherForecastDomainService
     {
@@ -43,7 +45,7 @@ namespace Functionalities
         private void CheckParametersValid(int zipcode, DateTime date, TemperatureTypeEnum temperatureType, ForecastTypeEnum forecastType)
         {
             //ToDo Validation for Enums
-            Validation validation = new Validation();
+            var validation = new DomainValidation();
             if (validation.isZipcode(zipcode) && validation.isStringADate(date.ToString()))
             {
             }

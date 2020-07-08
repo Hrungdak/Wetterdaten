@@ -2,6 +2,7 @@
 using Functionalities;
 using NUnit.Framework;
 using System;
+using Functionalities.DomainLogic;
 
 namespace FunctionalitiesTest
 {

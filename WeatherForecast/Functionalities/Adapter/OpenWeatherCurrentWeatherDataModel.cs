@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Functionalities
+namespace Functionalities.Adapter
 {
-    public class CurrentWeatherDataModel
+    public class OpenWeatherCurrentWeatherDataModel
     {
         public string Base { get; set; }
         public int Visibility { get; set; }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Functionalities.Enums;
 
-namespace Functionalities
+namespace Functionalities.DomainLogic
 {
     public class TemperatureInfo
     {

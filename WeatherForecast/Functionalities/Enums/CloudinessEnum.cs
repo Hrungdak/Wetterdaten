@@ -1,4 +1,4 @@
-﻿namespace Functionalities
+﻿namespace Functionalities.Enums
 {
     internal enum CloudinessEnum
     {

@@ -1,5 +1,6 @@
 ﻿using Functionalities;
 using System;
+using Functionalities.DomainLogic;
 
 namespace WeatherForecast.ConsoleInteractionWithUser
 {
@@ -41,7 +42,7 @@ namespace WeatherForecast.ConsoleInteractionWithUser
                     }
                     else
                     {
-                        Functionalities.WeatherForecast weatherForecast = new Functionalities.WeatherForecast();
+                        Functionalities.DomainLogic.WeatherForecast weatherForecast = new Functionalities.DomainLogic.WeatherForecast();
                         //Console.WriteLine(weatherForecast.GetWeatherForecastForZip(_userInputValidator.ConvertStringToInt(_userinput), ForecastTypeEnum.easy));
                     }
                 }

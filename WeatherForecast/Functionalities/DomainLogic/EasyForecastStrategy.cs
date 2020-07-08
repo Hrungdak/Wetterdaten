@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using Functionalities.Contracts;
 
-namespace Functionalities
+namespace Functionalities.DomainLogic
 {
     public class EasyForecastStrategy : IForecastStrategy
     {

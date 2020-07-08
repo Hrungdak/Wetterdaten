@@ -1,4 +1,7 @@
-﻿namespace Functionalities
+﻿using Functionalities.Contracts;
+using Functionalities.Enums;
+
+namespace Functionalities.DomainLogic
 {
     public static class TemperatureStrategyFactory
     {

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Functionalities.DomainLogic;
 
-namespace Functionalities
+namespace Functionalities.Contracts
 {
     public interface ITemperatureStrategy
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Functionalities
+namespace Functionalities.Adapter
 {
     public class OneCallApiModel
     {

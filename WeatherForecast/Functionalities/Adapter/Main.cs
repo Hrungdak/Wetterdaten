@@ -1,4 +1,4 @@
-﻿namespace Functionalities
+﻿namespace Functionalities.Adapter
 {
     public class Main
     {

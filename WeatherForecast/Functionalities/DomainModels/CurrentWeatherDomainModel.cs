@@ -1,4 +1,6 @@
-﻿namespace Functionalities
+﻿using Functionalities.Adapter;
+
+namespace Functionalities.DomainModels
 {
     public class CurrentWeatherDomainModel
     {
@@ -6,6 +8,7 @@
         public int Humidity { get; }
         public string Clouds { get; }
 
+        // TODO: Alex: Mapping muss in den Adapter, DomainModel darf keine Referenz auf OpenWeatherCurrentWeatherDataModel haben
         public CurrentWeatherDomainModel(OpenWeatherCurrentWeatherDataModel model)
         {
             Temperature = model.Main.Temp;

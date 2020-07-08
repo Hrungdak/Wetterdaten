@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using Functionalities;
+using Functionalities.DomainLogic;
+
 using NUnit.Framework;
 using System;
 

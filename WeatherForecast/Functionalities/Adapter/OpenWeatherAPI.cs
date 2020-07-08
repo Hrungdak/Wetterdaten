@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Functionalities.DomainModels;
 
 namespace Functionalities.Adapter
 {
@@ -26,7 +27,7 @@ namespace Functionalities.Adapter
             {
                 //WeatherForecastModel model = await response.Content.ReadAsAsync<WeatherForecastModel>();
                 var json = await response.Content.ReadAsStringAsync();
-                var weatherForecastModel = JsonConvert.DeserializeObject<CurrentWeatherDataModel>(json);
+                var weatherForecastModel = JsonConvert.DeserializeObject<OpenWeatherCurrentWeatherDataModel>(json);
                 return GetWeatherForecastDomainModel(weatherForecastModel);
             }
             else
@@ -68,7 +69,7 @@ namespace Functionalities.Adapter
         //    }
         //}
 
-        private static CurrentWeatherDomainModel GetWeatherForecastDomainModel(CurrentWeatherDataModel model)
+        private static CurrentWeatherDomainModel GetWeatherForecastDomainModel(OpenWeatherCurrentWeatherDataModel model)
         {
             return new CurrentWeatherDomainModel(model);
         }

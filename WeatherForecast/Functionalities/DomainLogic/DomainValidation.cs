@@ -1,9 +1,10 @@
-﻿using System;
-using System.ComponentModel;
+﻿using Functionalities.Enums;
 
-namespace Functionalities
+using System;
+
+namespace Functionalities.DomainLogic
 {
-    public class Validation
+    public class DomainValidation
     {
         //ToDo: Seperate into DOmain-Validation & UI-Validation
         public bool IsInteger(string value)

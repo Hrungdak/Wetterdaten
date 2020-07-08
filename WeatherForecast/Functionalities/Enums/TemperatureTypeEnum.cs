@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Functionalities
+﻿namespace Functionalities.Enums
 {
     public enum TemperatureTypeEnum
     {

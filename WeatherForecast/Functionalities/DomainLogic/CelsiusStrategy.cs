@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Functionalities.Contracts;
+using Functionalities.Enums;
 
-namespace Functionalities
+namespace Functionalities.DomainLogic
 {
     public class CelsiusStrategy : ITemperatureStrategy
     {

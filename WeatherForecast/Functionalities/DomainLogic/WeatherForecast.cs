@@ -1,11 +1,12 @@
-﻿using Functionalities.Adapter;
-using Functionalities.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Functionalities.Adapter;
+using Functionalities.DomainModels;
+using Functionalities.Enums;
 
-namespace Functionalities
+namespace Functionalities.DomainLogic
 {
     public class WeatherForecast
     {
