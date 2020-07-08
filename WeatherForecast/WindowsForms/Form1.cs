@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Net.Http;
+
+//using System.Net.Http;
 using System.Windows.Forms;
 using Functionalities;
 
@@ -19,8 +20,8 @@ namespace WindowsForms
             greetingUser.Show();
             this.Opacity = 0;
             this.Visible = false;
-            //ToDo Create Httpclient via HttpFactory
-            HttpClient httpClient = HttpClientFactory.CreateClient();
+            //ToDo Create Httpclient via HttpFactory -> In WeatherForecast?
+            //HttpClient httpClient = HttpClientFactory.CreateClient();
         }
 
         public void GetUserSettings()

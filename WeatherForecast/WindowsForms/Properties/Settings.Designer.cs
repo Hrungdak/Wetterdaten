@@ -82,5 +82,17 @@ namespace WindowsForms.Properties {
                 this["userZipcodeList"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("a1fcc507923163ff1bae113a80d8f82a")]
+        public string apiKey {
+            get {
+                return ((string)(this["apiKey"]));
+            }
+            set {
+                this["apiKey"] = value;
+            }
+        }
     }
 }

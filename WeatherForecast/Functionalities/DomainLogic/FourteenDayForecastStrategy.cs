@@ -6,7 +6,7 @@ namespace Functionalities
 {
     public class FourteenDayForecastStrategy : IForecastStrategy
     {
-        List<string> IForecastStrategy.GetForecastStrategy(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
+        List<string> IForecastStrategy.GetForecast(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
         {
             List<string> result = new List<string>();
             WeatherForecast weatherForecast = new WeatherForecast();

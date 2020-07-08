@@ -17,5 +17,8 @@
     <Setting Name="userZipcodeList" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="apiKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">a1fcc507923163ff1bae113a80d8f82a</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

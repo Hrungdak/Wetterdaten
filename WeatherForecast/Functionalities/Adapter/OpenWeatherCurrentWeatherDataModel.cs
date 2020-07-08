@@ -2,7 +2,7 @@
 
 namespace Functionalities
 {
-    public class WeatherForecastModel
+    public class CurrentWeatherDataModel
     {
         public string Base { get; set; }
         public int Visibility { get; set; }

@@ -6,14 +6,20 @@ namespace Functionalities
 {
     public class ThreeDayForecastStrategy : IForecastStrategy
     {
-        List<string> IForecastStrategy.GetForecastStrategy(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
+        List<string> IForecastStrategy.GetForecast(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
         {
             List<string> result = new List<string>();
             WeatherForecast weatherForecast = new WeatherForecast();
             //ToDo. Display Morning/Afternoon/Evening and maybe new method for threeDayForecast instead GetWeatherForecastForZip
-            result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, date));
-            result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, date.AddDays(1)));
-            result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, date.AddDays(2)));
+            try
+            {
+                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, date));
+                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, date.AddDays(1)));
+                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, date.AddDays(2)));
+            }
+            catch
+            {
+            }
             return result;
         }
 

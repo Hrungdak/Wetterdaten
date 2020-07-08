@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Functionalities
+﻿namespace Functionalities
 {
-    public class WeatherForecastDomainModel
+    public class CurrentWeatherDomainModel
     {
         public float Temperature { get; }
         public int Humidity { get; }
         public string Clouds { get; }
 
-        public WeatherForecastDomainModel(WeatherForecastModel model)
+        public CurrentWeatherDomainModel(OpenWeatherCurrentWeatherDataModel model)
         {
             Temperature = model.Main.Temp;
             Humidity = model.Main.Humidity;

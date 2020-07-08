@@ -6,7 +6,7 @@ namespace Functionalities
 {
     public class HourlyForecastStrategy : IForecastStrategy
     {
-        public List<string> GetForecastStrategy(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
+        public List<string> GetForecast(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
         {
             WeatherForecast weatherForecast = new WeatherForecast();
             return weatherForecast.GetHourlyWeatherForecast(zipcode, date);

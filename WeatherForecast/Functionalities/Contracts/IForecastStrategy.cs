@@ -6,6 +6,6 @@ namespace Functionalities
 {
     public interface IForecastStrategy
     {
-        List<string> GetForecastStrategy(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date);
+        List<string> GetForecast(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date);
     }
 }

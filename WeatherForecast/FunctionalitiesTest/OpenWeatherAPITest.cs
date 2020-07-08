@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Functionalities;
+using Functionalities.Adapter;
 using NUnit.Framework;
 
 namespace FunctionalitiesTest
 {
     [TestFixture]
-    internal class OpenWeatherAPITest
+    public class OpenWeatherAPITest
     {
         [Test]
         public void Blub()

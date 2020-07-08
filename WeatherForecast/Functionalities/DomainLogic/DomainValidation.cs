@@ -5,6 +5,7 @@ namespace Functionalities
 {
     public class Validation
     {
+        //ToDo: Seperate into DOmain-Validation & UI-Validation
         public bool IsInteger(string value)
         {
             return int.TryParse(value, out int convertedInputToInt);

@@ -10,18 +10,18 @@ namespace FunctionalitiesTest
     {
         //ToDo: Unit Tests for Refactored GetWeatherForecast
 
-        //[Test]
-        //public void GetWeatherForecastForZip_ZipcodeAndTypeOfForecastIsEasy_ReturnsForecastForToday()
-        //{
-        //    //arr
-        //    var sut = new WeatherForecast();
+        [Test]
+        public void GetWeatherForecastForZip_ZipcodeAndTypeOfForecastIsEasy_ReturnsForecastForToday()
+        {
+            //arr
+            var sut = new WeatherForecast();
 
-        //    //act
-        //    var result = sut.GetWeatherForecastForZip(12345, ForecastTypeEnum.easy, TemperatureTypeEnum.Celsius);
+            //act
+            var result = sut.GetWeatherForecastForZip(80339, DateTime.Now);
 
-        //    //assert
-        //    result.Count.Should().Be(1);
-        //}
+            //assert
+            //result.Count.Should().Be(1);
+        }
 
         //[Test]
         //public void GetWeatherForecastForZip_ZipcodeAndTypeOfForecastIsHourly_ReturnsHourlyForecastForToday()

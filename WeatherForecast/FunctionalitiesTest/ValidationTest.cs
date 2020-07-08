@@ -11,7 +11,7 @@ namespace FunctionalitiesTest
         [Test]
         public void IsInteger_StringEmpty_ReturnsFalse()
         {
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             var result = sut.IsInteger(string.Empty);
 
@@ -21,7 +21,7 @@ namespace FunctionalitiesTest
         [Test]
         public void IsInteger_StringIsValidInteger_ReturnsTrue()
         {
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             var result = sut.IsInteger("12345");
 
@@ -31,7 +31,7 @@ namespace FunctionalitiesTest
         [Test]
         public void IsInteger_StringIsNotValidInteger_ReturnsFalse()
         {
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             var result = sut.IsInteger("ASD");
 
@@ -41,7 +41,7 @@ namespace FunctionalitiesTest
         [Test]
         public void IsInteger_StringIsNull_ReturnsFalse()
         {
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             var result = sut.IsInteger(null);
 
@@ -51,7 +51,7 @@ namespace FunctionalitiesTest
         [Test]
         public void ConvertStringToInt_StringEmpty_Throws()
         {
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             Action action = () => sut.ConvertStringToInt("");
 
@@ -61,7 +61,7 @@ namespace FunctionalitiesTest
         [Test]
         public void ConvertStringToInt_StringIsNull_Throws()
         {
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             Action action = () => sut.ConvertStringToInt("");
 
@@ -71,7 +71,7 @@ namespace FunctionalitiesTest
         [Test]
         public void ConvertStringToInt_StringIsNotValidInteger_Throws()
         {
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             Action action = () => sut.ConvertStringToInt("ASD");
 
@@ -81,7 +81,7 @@ namespace FunctionalitiesTest
         [Test]
         public void ConvertStringToInt_StringIsValidInteger_ReturnsInteger()
         {
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             var result = sut.ConvertStringToInt("12345");
 
@@ -92,7 +92,7 @@ namespace FunctionalitiesTest
         public void areUserSettingsValid_UsernameIsEmpty_ReturnFalse()
         {
             //arr
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             //act
             var result = sut.areUserSettingsValid("", 55555, 1, 1);
@@ -105,7 +105,7 @@ namespace FunctionalitiesTest
         public void areUserSettingsValid_UsernameIsNull_ReturnFalse()
         {
             //arr
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             //act
             var result = sut.areUserSettingsValid(null, 55555, 1, 1);
@@ -118,7 +118,7 @@ namespace FunctionalitiesTest
         public void areUserSettingsValid_InvalidZipcode_ReturnFalse()
         {
             //arr
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             //act
             var result = sut.areUserSettingsValid("TestUser", -1, 1, 1);
@@ -131,7 +131,7 @@ namespace FunctionalitiesTest
         public void areUserSettingsValid_InvalidForecastType_ReturnFalse()
         {
             //arr
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             //act
             var result = sut.areUserSettingsValid("TestUser", 55555, -1, 1);
@@ -144,7 +144,7 @@ namespace FunctionalitiesTest
         public void areUserSettingsValid_InvalidTempertureType_ReturnFalse()
         {
             //arr
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             //act
             var result = sut.areUserSettingsValid("TestUser", 55555, 1, -1);
@@ -157,7 +157,7 @@ namespace FunctionalitiesTest
         public void isZipcode_InvalidZipcode_returnsFalse()
         {
             //arr
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             //act
             var result = sut.isZipcode(0);
@@ -170,7 +170,7 @@ namespace FunctionalitiesTest
         public void isStringADate_invalidString_returnsFalse()
         {
             //arr
-            var sut = new Validation();
+            var sut = new DomainValidation();
 
             //act
             var result = sut.isStringADate("Test");
