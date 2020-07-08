@@ -29,8 +29,8 @@ namespace WindowsForms
         {
             if (usernameInputTextbox.Text != string.Empty)
             {
-                Settings.Default.userName = usernameInputTextbox.Text;
-                Settings.Default.Save();
+                Properties.Settings.Default.userName = usernameInputTextbox.Text;
+                Properties.Settings.Default.Save();
             }
             mainForm.Visible = true;
             mainForm.Opacity = 100;
@@ -53,7 +53,7 @@ namespace WindowsForms
 
         private void GetUserName()
         {
-            _userName = Settings.Default.userName;
+            _userName = Properties.Settings.Default.userName;
         }
     }
 }

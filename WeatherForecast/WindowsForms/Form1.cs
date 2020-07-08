@@ -3,6 +3,7 @@ using Functionalities.Enums;
 
 using System;
 using System.Linq;
+
 //using System.Net.Http;
 using System.Windows.Forms;
 
@@ -27,18 +28,18 @@ namespace WindowsForms
 
         public void GetUserSettings()
         {
-            _userZipCode = Settings.Default.userZipcode;
-            _userForecastPreference = Settings.Default.userForecastPreference;
-            _userTemperaturePreference = Settings.Default.userTemperatureTypePreference;
+            _userZipCode = Properties.Settings.Default.userZipcode;
+            _userForecastPreference = Properties.Settings.Default.userForecastPreference;
+            _userTemperaturePreference = Properties.Settings.Default.userTemperatureTypePreference;
         }
 
         public void SaveSettings()
         {
-            Settings.Default.userZipcode = _userZipCode;
-            Settings.Default.userForecastPreference = _userForecastPreference;
-            Settings.Default.userTemperatureTypePreference = _userTemperaturePreference;
+            Properties.Settings.Default.userZipcode = _userZipCode;
+            Properties.Settings.Default.userForecastPreference = _userForecastPreference;
+            Properties.Settings.Default.userTemperatureTypePreference = _userTemperaturePreference;
             SaveZipcodeList();
-            Settings.Default.Save();
+            Properties.Settings.Default.Save();
         }
 
         private void searchbutton_Click(object sender, EventArgs e)
@@ -103,7 +104,7 @@ namespace WindowsForms
         {
             GetUserSettings();
             var validation = new DomainValidation();
-            if (validation.areUserSettingsValid(Settings.Default.userName,
+            if (validation.areUserSettingsValid(Properties.Settings.Default.userName,
                 _userZipCode,
                 _userForecastPreference,
                 _userTemperaturePreference))
@@ -118,6 +119,7 @@ namespace WindowsForms
             }
         }
 
+        //ToDo All Settings should be done in DomainService
         private void SetUserPreferencesOptions()
         {
             userinputfield.Text = _userZipCode.ToString();
@@ -141,7 +143,7 @@ namespace WindowsForms
 
         private int GetZipcodeFromSettings()
         {
-            return Settings.Default.userZipcode;
+            return Properties.Settings.Default.userZipcode;
         }
 
         private void SetForecastPreferenceButton()
@@ -183,7 +185,7 @@ namespace WindowsForms
         private ForecastTypeEnum GetForecastTypeFromSettings()
         {
             ForecastTypeEnum type = ForecastTypeEnum.easy;
-            switch (Settings.Default.userForecastPreference)
+            switch (Properties.Settings.Default.userForecastPreference)
             {
                 case 0:
                     {
@@ -212,7 +214,7 @@ namespace WindowsForms
         private TemperatureTypeEnum GetTemperatureTypeFromSettings()
         {
             TemperatureTypeEnum temperaturetype = TemperatureTypeEnum.Celsius;
-            switch (Settings.Default.userTemperatureTypePreference)
+            switch (Properties.Settings.Default.userTemperatureTypePreference)
             {
                 case 0:
                     {
@@ -256,14 +258,14 @@ namespace WindowsForms
         {
             var indices = favouritesList.Items.Cast<string>().ToArray();
 
-            Settings.Default.userZipcodeList = string.Join(",", indices);
+            Properties.Settings.Default.userZipcodeList = string.Join(",", indices);
         }
 
         private void LoadZipcodeList()
         {
-            if (!string.IsNullOrEmpty(Settings.Default.userZipcodeList))
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.userZipcodeList))
             {
-                Settings.Default.userZipcodeList.Split(',')
+                Properties.Settings.Default.userZipcodeList.Split(',')
                     .ToList()
                     .ForEach(item =>
                     {

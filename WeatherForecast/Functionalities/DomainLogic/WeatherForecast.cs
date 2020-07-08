@@ -20,20 +20,21 @@ namespace Functionalities.DomainLogic
             //Adjust string output to be correct (zip, date, temperature, degree Type, cloudiness)
             //try
             //{
-                var result = Task.Run(() => OpenWeatherAPI.GetCurrentWeather(httpClient, zipcode));
+            OpenWeatherAPI openWeatherAPI = new OpenWeatherAPI("a1fcc507923163ff1bae113a80d8f82a");
+            var result = Task.Run(() => openWeatherAPI.GetCurrentWeather(httpClient, zipcode));
 
-                result.Wait();
+            result.Wait();
 
-                CurrentWeatherDomainModel model = result.Result;
+            CurrentWeatherDomainModel model = result.Result;
 
-                float temperature = model.Temperature;
-                string cloudiness = model.Clouds;
+            float temperature = model.Temperature;
+            string cloudiness = model.Clouds;
 
-                //Random random = new Random();
-                //int randomTemperature = random.Next(11, 30);
-                //string randomCloudiness = Enum.GetName(typeof(CloudinessEnum), random.Next(0, Enum.GetNames(typeof(CloudinessEnum)).Length));
+            //Random random = new Random();
+            //int randomTemperature = random.Next(11, 30);
+            //string randomCloudiness = Enum.GetName(typeof(CloudinessEnum), random.Next(0, Enum.GetNames(typeof(CloudinessEnum)).Length));
 
-                return $"In {zipcode} hat es am {date.ToString("dd.MM.yyyy")} {temperature} °C und es ist {cloudiness}";
+            return $"In {zipcode} hat es am {date.ToString("dd.MM.yyyy")} {temperature} °C und es ist {cloudiness}";
             //}
             //catch
             //{
