@@ -5,10 +5,10 @@ namespace Functionalities.DomainLogic
 {
     public class CelsiusStrategy : ITemperatureStrategy
     {
-        public TemperatureInfo GetTemperatureFromCelsius(float celsiusTemperature)
+        public TemperatureInfo GetTemperatureFromKelvin(float kelvinTemperature)
         {
             TemperatureInfo temperatureInfo = new TemperatureInfo();
-            temperatureInfo.Temperature = celsiusTemperature;
+            temperatureInfo.Temperature = kelvinTemperature - 273;
             temperatureInfo.Display = "°C";
             temperatureInfo.Type = TemperatureTypeEnum.Celsius;
             return temperatureInfo;

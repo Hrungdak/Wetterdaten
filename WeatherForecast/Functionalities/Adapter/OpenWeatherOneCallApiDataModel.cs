@@ -2,7 +2,7 @@
 
 namespace Functionalities.Adapter
 {
-    public class OneCallApiModel
+    public class OpenWeatherOneCallApiDataModel
     {
         public float Lat { get; set; }
         public float Lon { get; set; }

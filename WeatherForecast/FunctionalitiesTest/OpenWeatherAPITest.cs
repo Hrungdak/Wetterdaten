@@ -11,7 +11,8 @@ namespace FunctionalitiesTest
         [Test]
         public void Blub()
         {
-            var sut = Task.Run(() => OpenWeatherAPI.GetCurrentWeather(HttpClientFactory.CreateClient(), 80339));
+            OpenWeatherAPI openWeatherAPI = new OpenWeatherAPI("a1fcc507923163ff1bae113a80d8f82a");
+            var sut = Task.Run(() => openWeatherAPI.GetCurrentWeather(HttpClientFactory.CreateClient(), 80339));
 
             sut.Wait();
 

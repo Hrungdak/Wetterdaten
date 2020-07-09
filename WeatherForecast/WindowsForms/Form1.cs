@@ -22,8 +22,6 @@ namespace WindowsForms
             greetingUser.Show();
             this.Opacity = 0;
             this.Visible = false;
-            //ToDo Create Httpclient via HttpFactory -> In WeatherForecast?
-            //HttpClient httpClient = HttpClientFactory.CreateClient();
         }
 
         public void GetUserSettings()
@@ -104,7 +102,7 @@ namespace WindowsForms
         {
             GetUserSettings();
             var validation = new DomainValidation();
-            if (validation.areUserSettingsValid(Properties.Settings.Default.userName,
+            if (validation.AreUserSettingsValid(Properties.Settings.Default.userName,
                 _userZipCode,
                 _userForecastPreference,
                 _userTemperaturePreference))

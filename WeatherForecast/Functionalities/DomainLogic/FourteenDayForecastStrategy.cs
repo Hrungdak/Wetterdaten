@@ -12,7 +12,7 @@ namespace Functionalities.DomainLogic
             WeatherForecast weatherForecast = new WeatherForecast();
             for (int fourteenDayCounter = 0; fourteenDayCounter < 14; fourteenDayCounter++)
             {
-                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, date.AddDays(fourteenDayCounter)));
+                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, temperatureStrategy, date.AddDays(fourteenDayCounter)));
             }
             return result;
         }

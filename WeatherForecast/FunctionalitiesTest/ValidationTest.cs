@@ -97,7 +97,7 @@ namespace FunctionalitiesTest
             var sut = new DomainValidation();
 
             //act
-            var result = sut.areUserSettingsValid("", 55555, 1, 1);
+            var result = sut.AreUserSettingsValid("", 55555, 1, 1);
 
             //assert
             result.Should().Be(false);
@@ -110,7 +110,7 @@ namespace FunctionalitiesTest
             var sut = new DomainValidation();
 
             //act
-            var result = sut.areUserSettingsValid(null, 55555, 1, 1);
+            var result = sut.AreUserSettingsValid(null, 55555, 1, 1);
 
             //assert
             result.Should().Be(false);
@@ -123,7 +123,7 @@ namespace FunctionalitiesTest
             var sut = new DomainValidation();
 
             //act
-            var result = sut.areUserSettingsValid("TestUser", -1, 1, 1);
+            var result = sut.AreUserSettingsValid("TestUser", -1, 1, 1);
 
             //assert
             result.Should().Be(false);
@@ -136,7 +136,7 @@ namespace FunctionalitiesTest
             var sut = new DomainValidation();
 
             //act
-            var result = sut.areUserSettingsValid("TestUser", 55555, -1, 1);
+            var result = sut.AreUserSettingsValid("TestUser", 55555, -1, 1);
 
             //assert
             result.Should().Be(false);
@@ -149,7 +149,7 @@ namespace FunctionalitiesTest
             var sut = new DomainValidation();
 
             //act
-            var result = sut.areUserSettingsValid("TestUser", 55555, 1, -1);
+            var result = sut.AreUserSettingsValid("TestUser", 55555, 1, -1);
 
             //assert
             result.Should().Be(false);
@@ -162,7 +162,7 @@ namespace FunctionalitiesTest
             var sut = new DomainValidation();
 
             //act
-            var result = sut.isZipcode(0);
+            var result = sut.IsZipcode(0);
 
             //assert
             result.Should().Be(false);
@@ -175,7 +175,7 @@ namespace FunctionalitiesTest
             var sut = new DomainValidation();
 
             //act
-            var result = sut.isStringADate("Test");
+            var result = sut.IsStringADate("Test");
 
             //assert
             result.Should().Be(false);

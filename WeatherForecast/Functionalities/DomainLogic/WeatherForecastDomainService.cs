@@ -46,7 +46,7 @@ namespace Functionalities.DomainLogic
         {
             //ToDo Validation for Enums
             var validation = new DomainValidation();
-            if (validation.isZipcode(zipcode) && validation.isStringADate(date.ToString()))
+            if (validation.IsZipcode(zipcode) && validation.IsStringADate(date.ToString()))
             {
             }
             else

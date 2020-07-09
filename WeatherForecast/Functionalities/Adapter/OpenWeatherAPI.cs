@@ -4,6 +4,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Functionalities.DomainModels;
+using Functionalities.Contracts;
 
 namespace Functionalities.Adapter
 {
@@ -11,7 +12,7 @@ namespace Functionalities.Adapter
     {
         private static string _url = "";
 
-        //ToDo: Get Country Code by Zip -> get it from UI
+        //ToDo: Get Country Code -> get it from UI
         private static string _countryCode = "de";
 
         private static string _apiKey;
@@ -29,7 +30,7 @@ namespace Functionalities.Adapter
             {
                 var json = await response.Content.ReadAsStringAsync();
                 var weatherForecastModel = JsonConvert.DeserializeObject<OpenWeatherCurrentWeatherDataModel>(json);
-                return GetWeatherForecastDomainModel(weatherForecastModel);
+                return GetCurrentWeatherForecastDomainModel(weatherForecastModel);
             }
             else
             {
@@ -53,7 +54,6 @@ namespace Functionalities.Adapter
         //        }
         //        else
         //        {
-        //            //ToDO: Correct Exception?
         //            throw new HttpRequestException(response.ReasonPhrase);
         //        }
         //    }
@@ -63,9 +63,17 @@ namespace Functionalities.Adapter
         //    }
         //}
 
-        private static CurrentWeatherDomainModel GetWeatherForecastDomainModel(OpenWeatherCurrentWeatherDataModel model)
+        private static CurrentWeatherDomainModel GetCurrentWeatherForecastDomainModel(OpenWeatherCurrentWeatherDataModel model)
         {
-            return new CurrentWeatherDomainModel(model);
+            MapperCurrentWeatherDomainModel mapper = new MapperCurrentWeatherDomainModel();
+            return mapper.MapToCurrentWeatherDomainModel(model);
+        }
+
+        private static HourlyValuesDomainModel GetOneCallApiDomainModel(OpenWeatherOneCallApiDataModel model)
+        {
+            //ToDo DI benutzen
+            IMapperHourlyValuesDomainModel<OpenWeatherOneCallApiDataModel> mapper = new MapperOpenWeatherOneCallToHourlyValuesDomainModel();
+            return mapper.MapToHourlyValuesDomainModel(model);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Functionalities.Adapter;
+using Functionalities.Contracts;
 using Functionalities.DomainModels;
 using Functionalities.Enums;
 
@@ -12,34 +13,21 @@ namespace Functionalities.DomainLogic
     {
         private HttpClient httpClient = HttpClientFactory.CreateClient();
 
-        public string GetWeatherForecastForZip(int zipcode, DateTime date)
+        public string GetWeatherForecastForZip(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
         {
-            //ToDo Next Steps:
-            // Get Data from the CurrentWeatherDataModel
-            // Return current Temperature.
-            //Adjust string output to be correct (zip, date, temperature, degree Type, cloudiness)
-            //try
-            //{
+            //ToDo Next Steps: Adjust string output to be correct (cloudiness)
+
+            //ToDo: Get API Key from Settings
             OpenWeatherAPI openWeatherAPI = new OpenWeatherAPI("a1fcc507923163ff1bae113a80d8f82a");
             var result = Task.Run(() => openWeatherAPI.GetCurrentWeather(httpClient, zipcode));
-
             result.Wait();
-
             CurrentWeatherDomainModel model = result.Result;
 
-            float temperature = model.Temperature;
+            float temperatureKelvin = model.Temperature;
             string cloudiness = model.Clouds;
+            TemperatureInfo temperatureInfo = temperatureStrategy.GetTemperatureFromKelvin(temperatureKelvin);
 
-            //Random random = new Random();
-            //int randomTemperature = random.Next(11, 30);
-            //string randomCloudiness = Enum.GetName(typeof(CloudinessEnum), random.Next(0, Enum.GetNames(typeof(CloudinessEnum)).Length));
-
-            return $"In {zipcode} hat es am {date.ToString("dd.MM.yyyy")} {temperature} °C und es ist {cloudiness}";
-            //}
-            //catch
-            //{
-            //    throw;
-            //}
+            return $"In {zipcode} hat es am {date.ToString("dd.MM.yyyy")} {temperatureInfo.Temperature} {temperatureInfo.Display} und es ist {cloudiness}";
         }
 
         public List<string> GetHourlyWeatherForecast(int zipcode, DateTime date)

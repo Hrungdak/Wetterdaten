@@ -22,7 +22,8 @@ namespace Functionalities.DomainLogic
             throw new ArgumentException();
         }
 
-        public bool areUserSettingsValid(string userName, int zipcode, int forecastType, int temperatureType)
+        //Ab hier UI Domain
+        public bool AreUserSettingsValid(string userName, int zipcode, int forecastType, int temperatureType)
         {
             if (userName == null || userName == string.Empty)
             {
@@ -43,7 +44,7 @@ namespace Functionalities.DomainLogic
             return true;
         }
 
-        public bool isZipcode(int zipcode)
+        public bool IsZipcode(int zipcode)
         {
             if (zipcode < 00501 || zipcode > 99950)
             {
@@ -52,7 +53,7 @@ namespace Functionalities.DomainLogic
             return true;
         }
 
-        public bool isStringADate(string date)
+        public bool IsStringADate(string date)
         {
             DateTime dateTime;
             if (DateTime.TryParse(date, out dateTime))

@@ -13,9 +13,9 @@ namespace Functionalities.DomainLogic
             //ToDo. Display Morning/Afternoon/Evening and maybe new method for threeDayForecast instead GetWeatherForecastForZip
             try
             {
-                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, date));
-                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, date.AddDays(1)));
-                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, date.AddDays(2)));
+                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, temperatureStrategy, date));
+                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, temperatureStrategy, date.AddDays(1)));
+                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, temperatureStrategy, date.AddDays(2)));
             }
             catch
             {

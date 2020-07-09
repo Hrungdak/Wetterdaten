@@ -3,6 +3,7 @@ using Functionalities;
 using NUnit.Framework;
 using System;
 using Functionalities.DomainLogic;
+using Functionalities.Contracts;
 
 namespace FunctionalitiesTest
 {
@@ -18,7 +19,7 @@ namespace FunctionalitiesTest
             var sut = new WeatherForecast();
 
             //act
-            var result = sut.GetWeatherForecastForZip(80339, DateTime.Now);
+            var result = sut.GetWeatherForecastForZip(80339, TemperatureStrategyFactory.GetTemperatureStrategy(Functionalities.Enums.TemperatureTypeEnum.Celsius), DateTime.Now);
 
             //assert
             //result.Count.Should().Be(1);

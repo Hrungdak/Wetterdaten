@@ -12,7 +12,7 @@ namespace Functionalities.DomainLogic
             WeatherForecast weatherForecast = new WeatherForecast();
             try
             {
-                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, date));
+                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, temperatureStrategy, date));
             }
             catch
             {
