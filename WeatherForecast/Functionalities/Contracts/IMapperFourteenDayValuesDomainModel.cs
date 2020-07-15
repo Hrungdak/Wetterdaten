@@ -1,12 +1,13 @@
-﻿using Functionalities.DomainModels;
+﻿using Functionalities.Adapter;
+using Functionalities.DomainModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Functionalities.Contracts
 {
-    public interface IMapperFourteenDayValuesDomainModel<T>
+    public interface IMapperFourteenDayValuesDomainModel
     {
-        FourteenDayValuesDomainModel MapToFourteenDayValuesDomainModel(T model);
+        FourteenDayValuesDomainModel MapToFourteenDayValuesDomainModel(OpenWeatherOneCallApiDataModel model);
     }
 }

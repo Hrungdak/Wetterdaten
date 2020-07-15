@@ -4,6 +4,7 @@ using NUnit.Framework;
 using System;
 using Functionalities.DomainLogic;
 using Functionalities.Contracts;
+using Functionalities.Adapter;
 
 namespace FunctionalitiesTest
 {
@@ -16,7 +17,8 @@ namespace FunctionalitiesTest
         public void GetWeatherForecastForZip_ZipcodeAndTypeOfForecastIsEasy_ReturnsForecastForToday()
         {
             //arr
-            var sut = new WeatherForecast();
+            IWeatherForecastProvider weatherForecastProvider = new OpenWeatherAPI(HttpClientFactory.CreateClient(), "a1fcc507923163ff1bae113a80d8f82a");
+            WeatherForecast sut = new WeatherForecast(weatherForecastProvider);
 
             //act
             var result = sut.GetWeatherForecastForZip(80339, TemperatureStrategyFactory.GetTemperatureStrategy(Functionalities.Enums.TemperatureTypeEnum.Celsius), DateTime.Now);

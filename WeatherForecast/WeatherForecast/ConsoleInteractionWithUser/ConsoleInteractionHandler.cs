@@ -42,7 +42,7 @@ namespace WeatherForecast.ConsoleInteractionWithUser
                     }
                     else
                     {
-                        Functionalities.DomainLogic.WeatherForecast weatherForecast = new Functionalities.DomainLogic.WeatherForecast();
+                        //Functionalities.DomainLogic.WeatherForecast weatherForecast = new Functionalities.DomainLogic.WeatherForecast();
                         //Console.WriteLine(weatherForecast.GetWeatherForecastForZip(_userInputValidator.ConvertStringToInt(_userinput), ForecastTypeEnum.easy));
                     }
                 }

@@ -5,25 +5,27 @@ namespace Functionalities.DomainLogic
 {
     public static class ForecastStrategyFactory
     {
-        public static IForecastStrategy GetForecastStrategy(ForecastTypeEnum forecastType)
+        public static IForecastStrategy GetForecastStrategy(
+            ForecastTypeEnum forecastType,
+            WeatherForecast weatherForecast)
         {
             switch (forecastType)
             {
                 default:
                     {
-                        return new EasyForecastStrategy();
+                        return new EasyForecastStrategy(weatherForecast);
                     }
                 case ForecastTypeEnum.hourly:
                     {
-                        return new HourlyForecastStrategy();
+                        return new HourlyForecastStrategy(weatherForecast);
                     }
                 case ForecastTypeEnum.threeDays:
                     {
-                        return new ThreeDayForecastStrategy();
+                        return new ThreeDayForecastStrategy(weatherForecast);
                     }
                 case ForecastTypeEnum.fourteenDays:
                     {
-                        return new FourteenDayForecastStrategy();
+                        return new FourteenDayForecastStrategy(weatherForecast);
                     }
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Functionalities.Adapter;
 using Functionalities.Contracts;
 using Functionalities.Enums;
 using Functionalities.Exceptions;
@@ -11,7 +12,11 @@ namespace Functionalities.DomainLogic
         private ITemperatureStrategy _temperatureStrategy;
         private IForecastStrategy _forecastStrategy;
 
-        public List<string> GetForecast(int zipcode, DateTime date, TemperatureTypeEnum temperatureType, ForecastTypeEnum forecastType)
+        public List<string> GetForecast(
+            int zipcode,
+            DateTime date,
+            TemperatureTypeEnum temperatureType,
+            ForecastTypeEnum forecastType)
         {
             try
             {
@@ -25,7 +30,9 @@ namespace Functionalities.DomainLogic
             // = "Orchestrierung", ruft Methoden auf ohne zu wissen, woher bspw. Parameter herkommen
             // Funktionales Programmieren
             _temperatureStrategy = TemperatureStrategyFactory.GetTemperatureStrategy(temperatureType);
-            _forecastStrategy = ForecastStrategyFactory.GetForecastStrategy(forecastType);
+            IWeatherForecastProvider weatherForecastProvider = new OpenWeatherAPI(HttpClientFactory.CreateClient(), "a1fcc507923163ff1bae113a80d8f82a");
+            WeatherForecast weatherForecast = new WeatherForecast(weatherForecastProvider);
+            _forecastStrategy = ForecastStrategyFactory.GetForecastStrategy(forecastType, weatherForecast);
             List<string> result = new List<string>();
             try
             {

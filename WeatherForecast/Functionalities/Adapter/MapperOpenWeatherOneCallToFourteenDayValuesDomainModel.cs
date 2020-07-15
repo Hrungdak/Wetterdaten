@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Functionalities.Adapter
 {
-    public class MapperOpenWeatherOneCallToFourteenDayValuesDomainModel : IMapperFourteenDayValuesDomainModel<OpenWeatherOneCallApiDataModel>
+    public class MapperOpenWeatherOneCallToFourteenDayValuesDomainModel : IMapperFourteenDayValuesDomainModel
     {
         public FourteenDayValuesDomainModel MapToFourteenDayValuesDomainModel(OpenWeatherOneCallApiDataModel model)
         {
@@ -16,6 +16,7 @@ namespace Functionalities.Adapter
             {
                 domainmodel.FourteenDayValues.Add(MapToFourteenDayValueDomainModel(model.Daily[i]));
             }
+            //ToDo: Last 7 Entries shouold return empty string
 
             return domainmodel;
         }

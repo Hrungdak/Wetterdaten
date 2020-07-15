@@ -6,13 +6,19 @@ namespace Functionalities.DomainLogic
 {
     public class EasyForecastStrategy : IForecastStrategy
     {
+        private WeatherForecast _weatherForecast;
+
+        public EasyForecastStrategy(WeatherForecast weatherForecast)
+        {
+            _weatherForecast = weatherForecast;
+        }
+
         List<string> IForecastStrategy.GetForecast(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
         {
             List<string> result = new List<string>();
-            WeatherForecast weatherForecast = new WeatherForecast();
             try
             {
-                result.Add(weatherForecast.GetWeatherForecastForZip(zipcode, temperatureStrategy, date));
+                result.Add(_weatherForecast.GetWeatherForecastForZip(zipcode, temperatureStrategy, date));
             }
             catch
             {

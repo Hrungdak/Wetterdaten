@@ -1,8 +1,10 @@
 ﻿using FluentAssertions;
-using Functionalities;
+using Functionalities.Adapter;
+using Functionalities.Contracts;
 using Functionalities.DomainLogic;
 using Functionalities.Enums;
 using NUnit.Framework;
+using Functionalities;
 
 namespace FunctionalitiesTest
 {
@@ -14,8 +16,10 @@ namespace FunctionalitiesTest
         {
             //arr
             var sut = ForecastTypeEnum.easy;
+            IWeatherForecastProvider weatherForecastProvider = new OpenWeatherAPI(HttpClientFactory.CreateClient(), "a1fcc507923163ff1bae113a80d8f82a");
+            WeatherForecast weatherForecast = new WeatherForecast(weatherForecastProvider);
             //act
-            var result = ForecastStrategyFactory.GetForecastStrategy(sut);
+            var result = ForecastStrategyFactory.GetForecastStrategy(sut, weatherForecast);
             //assert
             result.Should().BeOfType(typeof(EasyForecastStrategy));
         }
@@ -25,8 +29,10 @@ namespace FunctionalitiesTest
         {
             //arr
             var sut = ForecastTypeEnum.hourly;
+            IWeatherForecastProvider weatherForecastProvider = new OpenWeatherAPI(HttpClientFactory.CreateClient(), "a1fcc507923163ff1bae113a80d8f82a");
+            WeatherForecast weatherForecast = new WeatherForecast(weatherForecastProvider);
             //act
-            var result = ForecastStrategyFactory.GetForecastStrategy(sut);
+            var result = ForecastStrategyFactory.GetForecastStrategy(sut, weatherForecast);
             //assert
             result.Should().BeOfType(typeof(HourlyForecastStrategy));
         }
@@ -36,8 +42,10 @@ namespace FunctionalitiesTest
         {
             //arr
             var sut = ForecastTypeEnum.threeDays;
+            IWeatherForecastProvider weatherForecastProvider = new OpenWeatherAPI(HttpClientFactory.CreateClient(), "a1fcc507923163ff1bae113a80d8f82a");
+            WeatherForecast weatherForecast = new WeatherForecast(weatherForecastProvider);
             //act
-            var result = ForecastStrategyFactory.GetForecastStrategy(sut);
+            var result = ForecastStrategyFactory.GetForecastStrategy(sut, weatherForecast);
             //assert
             result.Should().BeOfType(typeof(ThreeDayForecastStrategy));
         }
@@ -47,8 +55,10 @@ namespace FunctionalitiesTest
         {
             //arr
             var sut = ForecastTypeEnum.fourteenDays;
+            IWeatherForecastProvider weatherForecastProvider = new OpenWeatherAPI(HttpClientFactory.CreateClient(), "a1fcc507923163ff1bae113a80d8f82a");
+            WeatherForecast weatherForecast = new WeatherForecast(weatherForecastProvider);
             //act
-            var result = ForecastStrategyFactory.GetForecastStrategy(sut);
+            var result = ForecastStrategyFactory.GetForecastStrategy(sut, weatherForecast);
             //assert
             result.Should().BeOfType(typeof(FourteenDayForecastStrategy));
         }

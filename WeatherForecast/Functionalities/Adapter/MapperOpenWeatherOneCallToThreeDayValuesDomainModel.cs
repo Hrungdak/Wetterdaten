@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Functionalities.Adapter
 {
-    public class MapperOpenWeatherOneCallToThreeDayValuesDomainModel : IMapperThreeDayValuesDomainModel<OpenWeatherOneCallApiDataModel>
+    public class MapperOpenWeatherOneCallToThreeDayValuesDomainModel : IMapperThreeDayValuesDomainModel
     {
         public ThreeDayValuesDomainModel MapToThreeDayValuesDomainModel(OpenWeatherOneCallApiDataModel model)
         {

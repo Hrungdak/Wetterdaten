@@ -1,9 +1,10 @@
-﻿using Functionalities.DomainModels;
+﻿using Functionalities.Adapter;
+using Functionalities.DomainModels;
 
 namespace Functionalities.Contracts
 {
-    public interface IMapperHourlyValuesDomainModel<T>
+    public interface IMapperHourlyValuesDomainModel
     {
-        HourlyValuesDomainModel MapToHourlyValuesDomainModel(T model);
+        HourlyValuesDomainModel MapToHourlyValuesDomainModel(OpenWeatherOneCallApiDataModel model);
     }
 }
