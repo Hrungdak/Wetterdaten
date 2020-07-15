@@ -1,8 +1,10 @@
-﻿namespace Functionalities.Adapter
+﻿using System.Collections.Generic;
+
+namespace Functionalities.Adapter
 {
     public class Current
     {
-        public float Dt { get; set; }
+        public int Dt { get; set; }
         public int Sunrise { get; set; }
         public int Sunset { get; set; }
         public float Temp { get; set; }
@@ -14,5 +16,8 @@
         public int Clouds { get; set; }
         public float Wind_speed { get; set; }
         public int Wind_deg { get; set; }
+
+        public List<Weather> Weather { get; set; }
+        public Rain Rain { get; set; }
     }
 }

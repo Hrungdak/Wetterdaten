@@ -7,7 +7,7 @@ namespace Functionalities.Adapter
         public float Lat { get; set; }
         public float Lon { get; set; }
         public string Timezone { get; set; }
-        public string Timezone_offset { get; set; }
+        public int Timezone_offset { get; set; }
 
         public Current Current { get; set; }
 

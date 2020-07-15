@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Functionalities.DomainModels
 {
-    public class HourlyValuesDomainModel
+    public class FourteenDayValuesDomainModel
     {
-        public List<HourlyDomainModel> HourlyValues;
+        public List<FourteenDayDomainModel> FourteenDayValues;
     }
 }

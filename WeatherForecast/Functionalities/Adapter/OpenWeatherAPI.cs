@@ -17,6 +17,8 @@ namespace Functionalities.Adapter
 
         private static string _apiKey;
 
+        private OpenWeatherOneCallDomainModel _openWeatherOneCallDomainModel;
+
         public OpenWeatherAPI(string apiKey)
         {
             _apiKey = apiKey;
@@ -38,30 +40,60 @@ namespace Functionalities.Adapter
             }
         }
 
-        //ToDo Return OneCallApiDomainModel
-        //public static async Task<CurrentWeatherDomainModel> GetHourlyForecast(HttpClient apiClient, float latitude, float longitude)
-        //{
-        //    _url = $"http://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&appid ={_apiKey}";
+        public async Task<HourlyValuesDomainModel> GetHourlyWeather(HttpClient apiClient, int zipcode)
+        {
+            await GetOpenWeatherOneCallDomainModel(apiClient, zipcode);
+            return _openWeatherOneCallDomainModel.HourlyValuesDomainModel;
+        }
 
-        //    try
-        //    {
-        //        HttpResponseMessage response = await apiClient.GetAsync(_url);
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            var json = await response.Content.ReadAsStringAsync();
-        //            var weatherForecastModel = JsonConvert.DeserializeObject<CurrentWeatherDataModel>(json);
-        //            return GetWeatherForecastDomainModel(weatherForecastModel);
-        //        }
-        //        else
-        //        {
-        //            throw new HttpRequestException(response.ReasonPhrase);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //}
+        public async Task<ThreeDayValuesDomainModel> GetWeatherForThreeDays(HttpClient apiClient, int zipcode)
+        {
+            await GetOpenWeatherOneCallDomainModel(apiClient, zipcode);
+            return _openWeatherOneCallDomainModel.ThreeDayValuesDomainModel;
+        }
+
+        public async Task<FourteenDayValuesDomainModel> GetWeatherForFourteenDays(HttpClient apiClient, int zipcode)
+        {
+            await GetOpenWeatherOneCallDomainModel(apiClient, zipcode);
+            return _openWeatherOneCallDomainModel.FourteenDayValuesDomain;
+        }
+
+        private async Task GetOpenWeatherOneCallDomainModel(HttpClient apiClient, int zipcode)
+        {
+            _openWeatherOneCallDomainModel = await GetOneCallApiDataModel(apiClient, zipcode);
+        }
+
+        private async Task<OpenWeatherOneCallDomainModel> GetOneCallApiDataModel(HttpClient apiClient, int zipcode)
+        {
+            //ToDo: Get Lat, Lon from zipcode
+            string latitude = "48.14";
+            string longitude = "11.58";
+
+            _url = $"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&appid={_apiKey}";
+
+            try
+            {
+                HttpResponseMessage response = await apiClient.GetAsync(_url);
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var weatherForecastModel = JsonConvert.DeserializeObject<OpenWeatherOneCallApiDataModel>(json);
+                    OpenWeatherOneCallDomainModel openWeatherOneCallDomainModel = new OpenWeatherOneCallDomainModel();
+                    openWeatherOneCallDomainModel.HourlyValuesDomainModel = GetHourlyValuesDomainModelFromOneCallApiDataModel(weatherForecastModel);
+                    openWeatherOneCallDomainModel.ThreeDayValuesDomainModel = GetThreeDayValuesDomainModelFromOneCallApiDataModel(weatherForecastModel);
+                    openWeatherOneCallDomainModel.FourteenDayValuesDomain = GetFourteenDayValuesDomainModelFromOneCallApiDataModel(weatherForecastModel);
+                    return openWeatherOneCallDomainModel;
+                }
+                else
+                {
+                    throw new HttpRequestException(response.ReasonPhrase);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         private static CurrentWeatherDomainModel GetCurrentWeatherForecastDomainModel(OpenWeatherCurrentWeatherDataModel model)
         {
@@ -69,11 +101,23 @@ namespace Functionalities.Adapter
             return mapper.MapToCurrentWeatherDomainModel(model);
         }
 
-        private static HourlyValuesDomainModel GetOneCallApiDomainModel(OpenWeatherOneCallApiDataModel model)
+        private static HourlyValuesDomainModel GetHourlyValuesDomainModelFromOneCallApiDataModel(OpenWeatherOneCallApiDataModel model)
         {
             //ToDo DI benutzen
             IMapperHourlyValuesDomainModel<OpenWeatherOneCallApiDataModel> mapper = new MapperOpenWeatherOneCallToHourlyValuesDomainModel();
             return mapper.MapToHourlyValuesDomainModel(model);
+        }
+
+        private static ThreeDayValuesDomainModel GetThreeDayValuesDomainModelFromOneCallApiDataModel(OpenWeatherOneCallApiDataModel model)
+        {
+            IMapperThreeDayValuesDomainModel<OpenWeatherOneCallApiDataModel> mapper = new MapperOpenWeatherOneCallToThreeDayValuesDomainModel();
+            return mapper.MapToThreeDayValuesDomainModel(model);
+        }
+
+        private static FourteenDayValuesDomainModel GetFourteenDayValuesDomainModelFromOneCallApiDataModel(OpenWeatherOneCallApiDataModel model)
+        {
+            IMapperFourteenDayValuesDomainModel<OpenWeatherOneCallApiDataModel> mapper = new MapperOpenWeatherOneCallToFourteenDayValuesDomainModel();
+            return mapper.MapToFourteenDayValuesDomainModel(model);
         }
     }
 }

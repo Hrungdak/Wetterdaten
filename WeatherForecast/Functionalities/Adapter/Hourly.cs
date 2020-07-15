@@ -1,4 +1,6 @@
-﻿namespace Functionalities.Adapter
+﻿using System.Collections.Generic;
+
+namespace Functionalities.Adapter
 {
     public class Hourly
     {
@@ -18,7 +20,7 @@
 
         public int Wind_deg { get; set; }
 
-        public Weather Weather { get; set; }
+        public List<Weather> Weather { get; set; }
         public Rain Rain { get; set; }
     }
 }
