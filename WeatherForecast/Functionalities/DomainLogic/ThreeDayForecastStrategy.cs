@@ -18,7 +18,6 @@ namespace Functionalities.DomainLogic
             List<string> result = new List<string>();
             try
             {
-                //ToDo: Call
                 result = _weatherForecast.GetThreeDayWeatherForecast(zipcode, temperatureStrategy, date);
             }
             catch
@@ -26,13 +25,5 @@ namespace Functionalities.DomainLogic
             }
             return result;
         }
-
-        //ToDo Do the Calculation in THreeDayFOrecastStrategy
-        //public string GetForecastInMorning(int zipcode, DateTime date)
-        //{
-        //    TimeSpan twelveAM = new TimeSpan(0, 0, 0);
-        //    DateTime dateAtTwelveAM = date.Date + twelveAM;
-        //    int averageTemperature
-        //}
     }
 }

@@ -52,7 +52,7 @@ namespace Functionalities.DomainLogic
         private void CheckParametersValid(int zipcode, DateTime date, TemperatureTypeEnum temperatureType, ForecastTypeEnum forecastType)
         {
             //ToDo Validation for Enums
-            var validation = new DomainValidation();
+            var validation = new UiValidation();
             if (validation.IsZipcode(zipcode) && validation.IsStringADate(date.ToString()))
             {
             }

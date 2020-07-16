@@ -43,6 +43,7 @@
             this.favouritesList = new System.Windows.Forms.ListBox();
             this.addButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
+            this.greetUserBox = new System.Windows.Forms.TextBox();
             this.temperatureTypeGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -213,11 +214,24 @@
             this.removeButton.UseVisualStyleBackColor = true;
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
+            // greetUserBox
+            // 
+            this.greetUserBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.greetUserBox.Location = new System.Drawing.Point(686, 58);
+            this.greetUserBox.Name = "greetUserBox";
+            this.greetUserBox.ReadOnly = true;
+            this.greetUserBox.Size = new System.Drawing.Size(237, 35);
+            this.greetUserBox.TabIndex = 15;
+            this.greetUserBox.Text = "Hello";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1642, 1007);
+            this.Controls.Add(this.greetUserBox);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.favouritesList);
@@ -256,6 +270,7 @@
         private System.Windows.Forms.ListBox favouritesList;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button removeButton;
+        private System.Windows.Forms.TextBox greetUserBox;
     }
 }
 

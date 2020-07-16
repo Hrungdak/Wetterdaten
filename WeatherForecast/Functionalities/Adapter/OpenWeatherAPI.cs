@@ -1,5 +1,4 @@
-﻿using Functionalities.Exceptions;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -29,7 +28,7 @@ namespace Functionalities.Adapter
 
         public async Task<CurrentWeatherDomainModel> GetCurrentWeather(int zipcode)
         {
-            _url = $"http://api.openweathermap.org/data/2.5/weather?zip={zipcode},{_countryCode}&appid={_apiKey}";
+            _url = $"http://api.openweathermap.org/data/2.5/weather?zip={zipcode},{_countryCode}&lang=de&appid={_apiKey}";
             HttpResponseMessage response = await _httpClient.GetAsync(_url);
             if (response.IsSuccessStatusCode)
             {
@@ -71,8 +70,9 @@ namespace Functionalities.Adapter
             //ToDo: Get Lat, Lon from zipcode
             string latitude = "48.14";
             string longitude = "11.58";
+            string language = "de";
 
-            _url = $"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&appid={_apiKey}";
+            _url = $"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&lang={language}&appid={_apiKey}";
 
             try
             {
@@ -106,7 +106,6 @@ namespace Functionalities.Adapter
 
         private static HourlyValuesDomainModel GetHourlyValuesDomainModelFromOneCallApiDataModel(OpenWeatherOneCallApiDataModel model)
         {
-            //ToDo DI benutzen
             IMapperHourlyValuesDomainModel mapper = new MapperOpenWeatherOneCallToHourlyValuesDomainModel();
             return mapper.MapToHourlyValuesDomainModel(model);
         }

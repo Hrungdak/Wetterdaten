@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Functionalities.Adapter;
 using Functionalities.Contracts;
 using Functionalities.DomainModels;
-using Functionalities.Enums;
 
 namespace Functionalities.DomainLogic
 {
@@ -21,54 +19,72 @@ namespace Functionalities.DomainLogic
 
         public string GetWeatherForecastForZip(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
         {
-            //ToDo Next Steps: Adjust string output to be correct (cloudiness)
-
             //ToDo: Get API Key from Settings
-            //OpenWeatherAPI openWeatherAPI = new OpenWeatherAPI(_httpClient, "a1fcc507923163ff1bae113a80d8f82a");
+            // Use DI here instead of creating OpenWeatherAPI here ( Provider can be easily changed later)
+            // OpenWeatherAPI openWeatherAPI = new OpenWeatherAPI(_httpClient, "a1fcc507923163ff1bae113a80d8f82a");
             var result = Task.Run(() => _weatherForecastProvider.GetCurrentWeather(zipcode));
             result.Wait();
             CurrentWeatherDomainModel model = result.Result;
 
             float temperatureKelvin = model.Temperature;
-            string cloudiness = model.Clouds;
+            string cloudiness = model.WeatherDescription;
             TemperatureInfo temperatureInfo = temperatureStrategy.GetTemperatureFromKelvin(temperatureKelvin);
-
-            return $"In {zipcode} hat es am {date.ToString("dd.MM.yyyy")} {temperatureInfo.Temperature} {temperatureInfo.Display} und es ist {cloudiness}";
+            double roundedTemperature = Math.Round(temperatureInfo.Temperature);
+            return $"In {zipcode} hat es am {date.ToString("d")} {roundedTemperature} {temperatureInfo.Display} und es ist {cloudiness}";
         }
 
         public List<string> GetHourlyWeatherForecast(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
         {
-            //ToDo Next Steps:
-            // Get Data from OneCallApiModel
-            // read out Hourly Data
-            // return it
-
             List<string> result = new List<string>();
-            //TimeSpan twelveAM = new TimeSpan(0, 0, 0);
-            //DateTime dateAtTwelveAM = date.Date + twelveAM;
-            //Random random = new Random();
-            //for (int hourOfDay = 0; hourOfDay < 24; hourOfDay++)
-            //{
-            //    int randomTemperature = random.Next(11, 30);
-            //    string randomCloudiness = Enum.GetName(typeof(CloudinessEnum), random.Next(0, Enum.GetNames(typeof(CloudinessEnum)).Length));
-            //    result.Add($"{dateAtTwelveAM.ToString()}: In {zipcode} hat es {randomTemperature} °C und ist {randomCloudiness}");
-            //    dateAtTwelveAM = dateAtTwelveAM.AddHours(1.0);
-            //}
-
-            //OpenWeatherAPI openWeatherAPI = new OpenWeatherAPI(_httpClient, "a1fcc507923163ff1bae113a80d8f82a");
             var hourlyData = Task.Run(() => _weatherForecastProvider.GetHourlyWeather(zipcode));
+            hourlyData.Wait();
+            HourlyValuesDomainModel model = hourlyData.Result;
+            foreach (var hour in model.HourlyValues)
+            {
+                TemperatureInfo temperatureInfo = temperatureStrategy.GetTemperatureFromKelvin(hour.Temperature);
+                double roundedTemperature = Math.Round(temperatureInfo.Temperature);
+                result.Add($"In {zipcode} hat es am {hour.Time.ToString("dd/MM/yyyy, HH:mm")} Uhr {roundedTemperature} {temperatureInfo.Display} und es ist {hour.WeatherDescription}");
+            }
 
             return result;
         }
 
         public List<string> GetThreeDayWeatherForecast(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
         {
-            throw new NotImplementedException();
+            List<string> result = new List<string>();
+            var threeDayData = Task.Run(() => _weatherForecastProvider.GetWeatherForThreeDays(zipcode));
+            threeDayData.Wait();
+            ThreeDayValuesDomainModel model = threeDayData.Result;
+            foreach (var day in model.ThreeDayValues)
+            {
+                TemperatureInfo MorningTemperatureInfo = temperatureStrategy.GetTemperatureFromKelvin(day.DailyMorningTemperature);
+                double roundedMorningTemperature = Math.Round(MorningTemperatureInfo.Temperature);
+                TemperatureInfo DayTemperatureInfo = temperatureStrategy.GetTemperatureFromKelvin(day.DailyDayTemperature);
+                double roundedDayTemperature = Math.Round(DayTemperatureInfo.Temperature);
+                TemperatureInfo EveningTemperatureInfo = temperatureStrategy.GetTemperatureFromKelvin(day.DailyEveningTemperature);
+                double roundedEveningTemperature = Math.Round(EveningTemperatureInfo.Temperature);
+                result.Add($"In {zipcode} hat es am {day.Time.ToString("d")} morgens {roundedMorningTemperature} {MorningTemperatureInfo.Display} und es ist {day.WeatherDescription}");
+                result.Add($"In {zipcode} hat es am {day.Time.ToString("d")} mittags {roundedDayTemperature} {DayTemperatureInfo.Display} und es ist {day.WeatherDescription}");
+                result.Add($"In {zipcode} hat es am {day.Time.ToString("d")} mittags {roundedEveningTemperature} {EveningTemperatureInfo.Display} und es ist {day.WeatherDescription}");
+            }
+
+            return result;
         }
 
         public List<string> GetFourteenDayWeatherForecast(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
         {
-            throw new NotImplementedException();
+            List<string> result = new List<string>();
+            var fourteenDayData = Task.Run(() => _weatherForecastProvider.GetWeatherForFourteenDays(zipcode));
+            fourteenDayData.Wait();
+            FourteenDayValuesDomainModel model = fourteenDayData.Result;
+            foreach (var day in model.FourteenDayValues)
+            {
+                TemperatureInfo temperatureInfo = temperatureStrategy.GetTemperatureFromKelvin(day.Temperature);
+                double roundedTemperature = Math.Round(temperatureInfo.Temperature);
+                result.Add($"In {zipcode} hat es am {day.Time.ToString("d")} {roundedTemperature} {temperatureInfo.Display} und es ist {day.WeatherDescription}");
+            }
+
+            return result;
         }
     }
 }

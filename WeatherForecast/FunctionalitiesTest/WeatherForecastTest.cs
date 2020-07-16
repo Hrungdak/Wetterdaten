@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Functionalities;
+using Functionalities.Enums;
 using NUnit.Framework;
 using System;
 using Functionalities.DomainLogic;
@@ -11,59 +12,60 @@ namespace FunctionalitiesTest
     [TestFixture]
     public class WeatherForecastTest
     {
-        //ToDo: Unit Tests for Refactored GetWeatherForecast
-
         [Test]
-        public void GetWeatherForecastForZip_ZipcodeAndTypeOfForecastIsEasy_ReturnsForecastForToday()
+        public void GetWeatherForecastForZip_OpenWeatherGetCurrentWeather_ReturnsForecastForToday()
         {
             //arr
             IWeatherForecastProvider weatherForecastProvider = new OpenWeatherAPI(HttpClientFactory.CreateClient(), "a1fcc507923163ff1bae113a80d8f82a");
             WeatherForecast sut = new WeatherForecast(weatherForecastProvider);
 
             //act
-            var result = sut.GetWeatherForecastForZip(80339, TemperatureStrategyFactory.GetTemperatureStrategy(Functionalities.Enums.TemperatureTypeEnum.Celsius), DateTime.Now);
+            var result = sut.GetWeatherForecastForZip(80339, TemperatureStrategyFactory.GetTemperatureStrategy(TemperatureTypeEnum.Celsius), DateTime.Now);
 
             //assert
             //result.Count.Should().Be(1);
         }
 
-        //[Test]
-        //public void GetWeatherForecastForZip_ZipcodeAndTypeOfForecastIsHourly_ReturnsHourlyForecastForToday()
-        //{
-        //    //arr
-        //    var sut = new WeatherForecast();
+        [Test]
+        public void GetWeatherForecastForZip_OpenWeatherOneCallAPI_ReturnsHourlyForecastForNext48Hours()
+        {
+            //arr
+            IWeatherForecastProvider weatherForecastProvider = new OpenWeatherAPI(HttpClientFactory.CreateClient(), "a1fcc507923163ff1bae113a80d8f82a");
+            WeatherForecast sut = new WeatherForecast(weatherForecastProvider);
 
-        //    //act
-        //    var result = sut.GetWeatherForecastForZip(12345, ForecastTypeEnum.hourly, TemperatureTypeEnum.Celsius);
+            //act
+            var result = sut.GetHourlyWeatherForecast(80339, TemperatureStrategyFactory.GetTemperatureStrategy(TemperatureTypeEnum.Celsius), DateTime.Now);
 
-        //    //assert
-        //    result.Count.Should().Be(24);
-        //}
+            //assert
+            result.Count.Should().Be(48);
+        }
 
-        //[Test]
-        //public void GetWeatherForecastForZip_ZipcodeAndTypeOfForecastIsThreeDays_ReturnsForecastMorningAfternoonNightForThreeDays()
-        //{
-        //    //arr
-        //    var sut = new WeatherForecast();
+        [Test]
+        public void GetWeatherForecastForZip_OpenWeatherOneCallAPI_ReturnsThreeDayForecast()
+        {
+            //arr
+            IWeatherForecastProvider weatherForecastProvider = new OpenWeatherAPI(HttpClientFactory.CreateClient(), "a1fcc507923163ff1bae113a80d8f82a");
+            WeatherForecast sut = new WeatherForecast(weatherForecastProvider);
 
-        //    //act
-        //    var result = sut.GetWeatherForecastForZip(12345, ForecastTypeEnum.threeDays, TemperatureTypeEnum.Celsius);
+            //act
+            var result = sut.GetThreeDayWeatherForecast(80339, TemperatureStrategyFactory.GetTemperatureStrategy(TemperatureTypeEnum.Celsius), DateTime.Now);
 
-        //    //assert
-        //    result.Count.Should().Be(9);
-        //}
+            //assert
+            result.Count.Should().Be(9);
+        }
 
-        //[Test]
-        //public void GetWeatherForecastForZip_ZipcodeAndTypeOfForecastIsFourteenDays_ReturnsForecastForFourteenDays()
-        //{
-        //    //arr
-        //    var sut = new WeatherForecast();
+        [Test]
+        public void GetWeatherForecastForZip_OpenWeatherOneCallAPI_ReturnsFourteenDayForecast()
+        {
+            //arr
+            IWeatherForecastProvider weatherForecastProvider = new OpenWeatherAPI(HttpClientFactory.CreateClient(), "a1fcc507923163ff1bae113a80d8f82a");
+            WeatherForecast sut = new WeatherForecast(weatherForecastProvider);
 
-        //    //act
-        //    var result = sut.GetWeatherForecastForZip(12345, ForecastTypeEnum.fourteenDays, TemperatureTypeEnum.Celsius);
+            //act
+            var result = sut.GetFourteenDayWeatherForecast(80339, TemperatureStrategyFactory.GetTemperatureStrategy(TemperatureTypeEnum.Celsius), DateTime.Now);
 
-        //    //assert
-        //    result.Count.Should().Be(14);
-        //}
+            //assert
+            result.Count.Should().Be(14);
+        }
     }
 }

@@ -24,8 +24,7 @@ namespace Functionalities.Adapter
             var result = new HourlyDomainModel();
             result.Time = new DateTime(1970, 1, 1).AddSeconds(hourly.Dt);
             result.Temperature = hourly.Temp;
-            result.Humidity = hourly.Humidity;
-            result.Cloudiness = hourly.Clouds;
+            result.WeatherDescription = hourly.Weather[0].Description;
 
             return result;
         }

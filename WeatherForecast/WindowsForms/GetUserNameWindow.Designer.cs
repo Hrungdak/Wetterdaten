@@ -1,6 +1,6 @@
 ﻿namespace WindowsForms
 {
-    partial class GreetingUser
+    partial class GetUserNameWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -28,49 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.usernameInputTextbox = new System.Windows.Forms.TextBox();
-            this.greetLabel = new System.Windows.Forms.Label();
+            this.helloLabel = new System.Windows.Forms.Label();
+            this.userInput = new System.Windows.Forms.TextBox();
             this.confirmButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // usernameInputTextbox
+            // helloLabel
             // 
-            this.usernameInputTextbox.Location = new System.Drawing.Point(261, 204);
-            this.usernameInputTextbox.Name = "usernameInputTextbox";
-            this.usernameInputTextbox.Size = new System.Drawing.Size(277, 35);
-            this.usernameInputTextbox.TabIndex = 0;
-            this.usernameInputTextbox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.helloLabel.AutoSize = true;
+            this.helloLabel.Location = new System.Drawing.Point(108, 41);
+            this.helloLabel.Name = "helloLabel";
+            this.helloLabel.Size = new System.Drawing.Size(406, 29);
+            this.helloLabel.TabIndex = 0;
+            this.helloLabel.Text = "Hello, please enter your name below";
             // 
-            // greetLabel
+            // userInput
             // 
-            this.greetLabel.AutoSize = true;
-            this.greetLabel.Location = new System.Drawing.Point(362, 113);
-            this.greetLabel.Name = "greetLabel";
-            this.greetLabel.Size = new System.Drawing.Size(70, 29);
-            this.greetLabel.TabIndex = 1;
-            this.greetLabel.Text = "Hello";
+            this.userInput.Location = new System.Drawing.Point(218, 136);
+            this.userInput.Name = "userInput";
+            this.userInput.Size = new System.Drawing.Size(162, 35);
+            this.userInput.TabIndex = 1;
             // 
             // confirmButton
             // 
-            this.confirmButton.Location = new System.Drawing.Point(338, 326);
+            this.confirmButton.Location = new System.Drawing.Point(233, 221);
             this.confirmButton.Name = "confirmButton";
-            this.confirmButton.Size = new System.Drawing.Size(132, 54);
+            this.confirmButton.Size = new System.Drawing.Size(121, 48);
             this.confirmButton.TabIndex = 2;
             this.confirmButton.Text = "Confirm";
             this.confirmButton.UseVisualStyleBackColor = true;
             this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
-            // GreetingUser
+            // GetUserNameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(597, 307);
             this.Controls.Add(this.confirmButton);
-            this.Controls.Add(this.greetLabel);
-            this.Controls.Add(this.usernameInputTextbox);
-            this.Name = "GreetingUser";
-            this.Text = "GreetingUser";
-            this.Load += new System.EventHandler(this.GreetingUser_Load);
+            this.Controls.Add(this.userInput);
+            this.Controls.Add(this.helloLabel);
+            this.Name = "GetUserNameWindow";
+            this.Text = "GetUserNameWindow";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -78,8 +76,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox usernameInputTextbox;
-        private System.Windows.Forms.Label greetLabel;
+        private System.Windows.Forms.Label helloLabel;
+        private System.Windows.Forms.TextBox userInput;
         private System.Windows.Forms.Button confirmButton;
     }
 }

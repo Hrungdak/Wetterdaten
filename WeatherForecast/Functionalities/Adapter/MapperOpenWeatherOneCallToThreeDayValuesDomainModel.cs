@@ -26,8 +26,7 @@ namespace Functionalities.Adapter
             result.DailyMorningTemperature = daily.Temp.Morn;
             result.DailyDayTemperature = daily.Temp.Day;
             result.DailyEveningTemperature = daily.Temp.Eve;
-            result.Humidity = daily.Humidity;
-            result.Cloudiness = daily.Clouds;
+            result.WeatherDescription = daily.Weather[0].Description;
 
             return result;
         }

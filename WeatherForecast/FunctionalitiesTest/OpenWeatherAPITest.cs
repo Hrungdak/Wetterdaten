@@ -24,13 +24,6 @@ namespace FunctionalitiesTest
         [Test]
         public void OneCallAPITest_GetHourlyWeather_ReturnsTrue()
         {
-            //OpenWeatherAPI openWeatherAPI = new OpenWeatherAPI("a1fcc507923163ff1bae113a80d8f82a");
-            //var sut = Task.Run(() => openWeatherAPI.GetOpenWeatherOneCallDomainModel(HttpClientFactory.CreateClient(), 80339));
-
-            //sut.Wait();
-
-            //var json = sut.Result;
-
             OpenWeatherAPI sut = new OpenWeatherAPI(HttpClientFactory.CreateClient(), "a1fcc507923163ff1bae113a80d8f82a");
             var data = Task.Run(() => sut.GetHourlyWeather(80339));
             data.Wait();

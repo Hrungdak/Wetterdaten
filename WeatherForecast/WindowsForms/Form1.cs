@@ -1,10 +1,7 @@
 ﻿using Functionalities.DomainLogic;
 using Functionalities.Enums;
-
 using System;
 using System.Linq;
-
-//using System.Net.Http;
 using System.Windows.Forms;
 
 namespace WindowsForms
@@ -14,18 +11,16 @@ namespace WindowsForms
         private int _userZipCode;
         private int _userForecastPreference;
         private int _userTemperaturePreference;
+        private string _userName;
 
         public Form1()
         {
             InitializeComponent();
-            GreetingUser greetingUser = new GreetingUser(this);
-            greetingUser.Show();
-            this.Opacity = 0;
-            this.Visible = false;
         }
 
         public void GetUserSettings()
         {
+            _userName = Properties.Settings.Default.userName;
             _userZipCode = Properties.Settings.Default.userZipcode;
             _userForecastPreference = Properties.Settings.Default.userForecastPreference;
             _userTemperaturePreference = Properties.Settings.Default.userTemperatureTypePreference;
@@ -33,6 +28,7 @@ namespace WindowsForms
 
         public void SaveSettings()
         {
+            Properties.Settings.Default.userName = _userName;
             Properties.Settings.Default.userZipcode = _userZipCode;
             Properties.Settings.Default.userForecastPreference = _userForecastPreference;
             Properties.Settings.Default.userTemperatureTypePreference = _userTemperaturePreference;
@@ -74,11 +70,6 @@ namespace WindowsForms
             {
                 //ToDo: Give Correct Date as Parameter
                 _userZipCode = inputValidator.ConvertStringToInt(userinputfield.Text);
-                //var result = weatherForecast
-                //    .GetWeatherForecastForZip(
-                //    _userZipCode,
-                //    type,
-                //    temperatureType);
                 var result = weatherService
                     .GetForecast(
                     _userZipCode,
@@ -101,7 +92,14 @@ namespace WindowsForms
         private void Form1_Load(object sender, EventArgs e)
         {
             GetUserSettings();
-            var validation = new DomainValidation();
+            if (_userName == null || _userName == string.Empty)
+            {
+                GetUserNameWindow getUserNameWindow = new GetUserNameWindow(this);
+                getUserNameWindow.Show();
+                this.Opacity = 0;
+                this.Visible = false;
+            }
+            var validation = new UiValidation();
             if (validation.AreUserSettingsValid(Properties.Settings.Default.userName,
                 _userZipCode,
                 _userForecastPreference,
@@ -117,9 +115,16 @@ namespace WindowsForms
             }
         }
 
+        public void SetUserNameFromInput(string name)
+        {
+            greetUserBox.Text = "Hello " + name;
+            _userName = name;
+        }
+
         //ToDo All Settings should be done in DomainService
         private void SetUserPreferencesOptions()
         {
+            greetUserBox.Text = "Hello " + _userName;
             userinputfield.Text = _userZipCode.ToString();
             SetForecastPreferenceButton();
             SetTemperaturePreferenceButton();
@@ -127,8 +132,7 @@ namespace WindowsForms
 
         private void RunWeatherForecastWithUserPreferences()
         {
-            //ToDo: Give Correct Date as Parameter
-            //WeatherForecast weatherForecast = new WeatherForecast();
+            //ToDo: Give Correct Date as Parameter; Date not used in OpenWeatherAPI
             WeatherForecastDomainService weatherService = new WeatherForecastDomainService();
             var result = weatherService
                 .GetForecast(

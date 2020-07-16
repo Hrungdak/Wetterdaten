@@ -11,12 +11,14 @@ namespace Functionalities.Adapter
         {
             FourteenDayValuesDomainModel domainmodel = new FourteenDayValuesDomainModel();
             domainmodel.FourteenDayValues = new List<FourteenDayDomainModel>();
-            //ToDo: Important - API only returns 7 Days instead of 14 Days!!!
             for (int i = 0; i < 7; i++)
             {
                 domainmodel.FourteenDayValues.Add(MapToFourteenDayValueDomainModel(model.Daily[i]));
             }
-            //ToDo: Last 7 Entries shouold return empty string
+            for (int noDataIndex = 7; noDataIndex < 14; noDataIndex++)
+            {
+                domainmodel.FourteenDayValues.Add(CreateEmptyDomainModel());
+            }
 
             return domainmodel;
         }
@@ -26,8 +28,17 @@ namespace Functionalities.Adapter
             var result = new FourteenDayDomainModel();
             result.Time = new DateTime(1970, 1, 1).AddSeconds(daily.Dt);
             result.Temperature = daily.Temp.Day;
-            result.Humidity = daily.Humidity;
-            result.Cloudiness = daily.Clouds;
+            result.WeatherDescription = daily.Weather[0].Description;
+
+            return result;
+        }
+
+        private FourteenDayDomainModel CreateEmptyDomainModel()
+        {
+            var result = new FourteenDayDomainModel();
+            result.Time = new DateTime(1970, 1, 1);
+            result.Temperature = -999;
+            result.WeatherDescription = "Empty Data";
 
             return result;
         }

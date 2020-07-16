@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Functionalities.Adapter
 {
@@ -10,7 +8,6 @@ namespace Functionalities.Adapter
         public float DailyMorningTemperature;
         public float DailyDayTemperature;
         public float DailyEveningTemperature;
-        public int Humidity;
-        public int Cloudiness;
+        public string WeatherDescription;
     }
 }
