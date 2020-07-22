@@ -44,6 +44,7 @@
             this.addButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
             this.greetUserBox = new System.Windows.Forms.TextBox();
+            this.favouriteOutput = new System.Windows.Forms.TextBox();
             this.temperatureTypeGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -163,7 +164,7 @@
             this.temperatureTypeGroupBox.Controls.Add(this.kelvinButton);
             this.temperatureTypeGroupBox.Location = new System.Drawing.Point(27, 374);
             this.temperatureTypeGroupBox.Name = "temperatureTypeGroupBox";
-            this.temperatureTypeGroupBox.Size = new System.Drawing.Size(288, 256);
+            this.temperatureTypeGroupBox.Size = new System.Drawing.Size(272, 170);
             this.temperatureTypeGroupBox.TabIndex = 10;
             this.temperatureTypeGroupBox.TabStop = false;
             this.temperatureTypeGroupBox.Text = "Temperature Type";
@@ -187,15 +188,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.favouritesList.FormattingEnabled = true;
             this.favouritesList.ItemHeight = 29;
-            this.favouritesList.Location = new System.Drawing.Point(1261, 206);
+            this.favouritesList.Location = new System.Drawing.Point(1190, 196);
             this.favouritesList.Name = "favouritesList";
-            this.favouritesList.Size = new System.Drawing.Size(195, 497);
+            this.favouritesList.Size = new System.Drawing.Size(195, 178);
             this.favouritesList.TabIndex = 12;
             // 
             // addButton
             // 
             this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addButton.Location = new System.Drawing.Point(1488, 206);
+            this.addButton.Location = new System.Drawing.Point(1426, 206);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(115, 55);
             this.addButton.TabIndex = 13;
@@ -206,7 +207,7 @@
             // removeButton
             // 
             this.removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.removeButton.Location = new System.Drawing.Point(1488, 284);
+            this.removeButton.Location = new System.Drawing.Point(1426, 269);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(115, 65);
             this.removeButton.TabIndex = 14;
@@ -226,11 +227,25 @@
             this.greetUserBox.TabIndex = 15;
             this.greetUserBox.Text = "Hello";
             // 
+            // favouriteOutput
+            // 
+            this.favouriteOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.favouriteOutput.Location = new System.Drawing.Point(1190, 380);
+            this.favouriteOutput.Multiline = true;
+            this.favouriteOutput.Name = "favouriteOutput";
+            this.favouriteOutput.ReadOnly = true;
+            this.favouriteOutput.Size = new System.Drawing.Size(440, 350);
+            this.favouriteOutput.TabIndex = 16;
+            this.favouriteOutput.Text = "Result Favourites";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1642, 1007);
+            this.Controls.Add(this.favouriteOutput);
             this.Controls.Add(this.greetUserBox);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.addButton);
@@ -271,6 +286,7 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.TextBox greetUserBox;
+        private System.Windows.Forms.TextBox favouriteOutput;
     }
 }
 

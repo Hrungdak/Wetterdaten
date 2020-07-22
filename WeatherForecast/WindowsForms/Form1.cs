@@ -1,6 +1,7 @@
 ﻿using Functionalities.DomainLogic;
 using Functionalities.Enums;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace WindowsForms
         private int _userForecastPreference;
         private int _userTemperaturePreference;
         private string _userName;
+        private List<int> _zipcodeList = new List<int>();
 
         public Form1()
         {
@@ -65,7 +67,7 @@ namespace WindowsForms
             }
 
             WeatherForecastDomainService weatherService = new WeatherForecastDomainService();
-            var inputValidator = new DomainValidation();
+            var inputValidator = new UiValidation();
             if (inputValidator.IsInteger(userinputfield.Text))
             {
                 //ToDo: Give Correct Date as Parameter
@@ -79,7 +81,18 @@ namespace WindowsForms
 
                 outputfield.Text = string.Join(Environment.NewLine, result);
             }
-
+            string outputFavourites = string.Empty;
+            foreach (var zipcode in _zipcodeList)
+            {
+                var resultFavourites = weatherService
+                    .GetForecast(
+                    zipcode,
+                    DateTime.Now,
+                    temperatureType,
+                    type);
+                outputFavourites += string.Join(Environment.NewLine, resultFavourites);
+            }
+            favouriteOutput.Text = outputFavourites;
             SaveSettings();
         }
 
@@ -106,13 +119,30 @@ namespace WindowsForms
                 _userTemperaturePreference))
             {
                 SetUserPreferencesOptions();
-                LoadZipcodeList();
-                //ToDo for each Zipcode in the list, call RunWeatherforecast. Return Favourite Outputs in different TextLabel
-                // 1) make new Textlabel
-                // 2) Method RunWeatherforcecastFavourites
-                // 3) Method loops over the favouriteList and calls WeatherForecastForZip
                 RunWeatherForecastWithUserPreferences();
+                if (!IsFavouriteListEmpty())
+                {
+                    LoadZipcodeList();
+                    GetWeatherForecastForFavourites();
+                }
             }
+        }
+
+        private void GetWeatherForecastForFavourites()
+        {
+            string outputFavourites = string.Empty;
+            foreach (var zipcode in _zipcodeList)
+            {
+                WeatherForecastDomainService weatherService = new WeatherForecastDomainService();
+                var result = weatherService
+                    .GetForecast(
+                    zipcode,
+                    DateTime.Now,
+                    GetTemperatureTypeFromSettings(),
+                    GetForecastTypeFromSettings());
+                outputFavourites += string.Join(Environment.NewLine, result);
+            }
+            favouriteOutput.Text = outputFavourites;
         }
 
         public void SetUserNameFromInput(string name)
@@ -248,7 +278,7 @@ namespace WindowsForms
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            var inputValidator = new DomainValidation();
+            var inputValidator = new UiValidation();
             if (inputValidator.IsInteger(userinputfield.Text))
             {
                 favouritesList.Items.Add(userinputfield.Text);
@@ -265,15 +295,27 @@ namespace WindowsForms
 
         private void LoadZipcodeList()
         {
+            UiValidation uiValidation = new UiValidation();
+
+            Properties.Settings.Default.userZipcodeList.Split(',')
+                .ToList()
+                .ForEach(item =>
+                {
+                    favouritesList.Items.Add(item);
+                    if (uiValidation.IsInteger(item))
+                    {
+                        _zipcodeList.Add(uiValidation.ConvertStringToInt(item));
+                    }
+                });
+        }
+
+        private bool IsFavouriteListEmpty()
+        {
             if (!string.IsNullOrEmpty(Properties.Settings.Default.userZipcodeList))
             {
-                Properties.Settings.Default.userZipcodeList.Split(',')
-                    .ToList()
-                    .ForEach(item =>
-                    {
-                        favouritesList.Items.Add(item);
-                    });
+                return false;
             }
+            return true;
         }
     }
 }

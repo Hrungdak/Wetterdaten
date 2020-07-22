@@ -10,7 +10,7 @@ namespace WeatherForecast.ConsoleInteractionWithUser
         private int _lowestGermanPostalCode = 01067;
         private int _highestGermanPostalCode = 99998;
 
-        private DomainValidation _userInputValidator = new DomainValidation();
+        private UiValidation _userInputValidator = new UiValidation();
 
         public void ManageConsoleInteraction()
         {

@@ -22,15 +22,15 @@ namespace Functionalities.DomainLogic
             //ToDo: Get API Key from Settings
             // Use DI here instead of creating OpenWeatherAPI here ( Provider can be easily changed later)
             // OpenWeatherAPI openWeatherAPI = new OpenWeatherAPI(_httpClient, "a1fcc507923163ff1bae113a80d8f82a");
-            var result = Task.Run(() => _weatherForecastProvider.GetCurrentWeather(zipcode));
-            result.Wait();
-            CurrentWeatherDomainModel model = result.Result;
+            var data = Task.Run(() => _weatherForecastProvider.GetCurrentWeather(zipcode));
+            data.Wait();
+            CurrentWeatherDomainModel model = data.Result;
 
             float temperatureKelvin = model.Temperature;
             string cloudiness = model.WeatherDescription;
             TemperatureInfo temperatureInfo = temperatureStrategy.GetTemperatureFromKelvin(temperatureKelvin);
             double roundedTemperature = Math.Round(temperatureInfo.Temperature);
-            return $"In {zipcode} hat es am {date.ToString("d")} {roundedTemperature} {temperatureInfo.Display} und es ist {cloudiness}";
+            return $"In {zipcode} hat es am {date.ToString("d")} {roundedTemperature} {temperatureInfo.Display} und es ist {cloudiness}" + Environment.NewLine;
         }
 
         public List<string> GetHourlyWeatherForecast(int zipcode, ITemperatureStrategy temperatureStrategy, DateTime date)
