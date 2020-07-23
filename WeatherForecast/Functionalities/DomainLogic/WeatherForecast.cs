@@ -79,9 +79,16 @@ namespace Functionalities.DomainLogic
             FourteenDayValuesDomainModel model = fourteenDayData.Result;
             foreach (var day in model.FourteenDayValues)
             {
-                TemperatureInfo temperatureInfo = temperatureStrategy.GetTemperatureFromKelvin(day.Temperature);
-                double roundedTemperature = Math.Round(temperatureInfo.Temperature);
-                result.Add($"In {zipcode} hat es am {day.Time.ToString("d")} {roundedTemperature} {temperatureInfo.Display} und es ist {day.WeatherDescription}");
+                if (day.WeatherDescription == "Empty Data")
+                {
+                    result.Add("Keine Wetterdaten vorhanden");
+                }
+                else
+                {
+                    TemperatureInfo temperatureInfo = temperatureStrategy.GetTemperatureFromKelvin(day.Temperature);
+                    double roundedTemperature = Math.Round(temperatureInfo.Temperature);
+                    result.Add($"In {zipcode} hat es am {day.Time.ToString("d")} {roundedTemperature} {temperatureInfo.Display} und es ist {day.WeatherDescription}");
+                }
             }
 
             return result;

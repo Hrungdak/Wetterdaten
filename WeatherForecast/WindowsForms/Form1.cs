@@ -40,31 +40,11 @@ namespace WindowsForms
 
         private void searchbutton_Click(object sender, EventArgs e)
         {
-            ForecastTypeEnum type = ForecastTypeEnum.easy;
-            _userForecastPreference = (int)ForecastTypeEnum.easy;
-            if (hourlyButton.Checked)
-            {
-                type = ForecastTypeEnum.hourly;
-                _userForecastPreference = (int)ForecastTypeEnum.hourly;
-            }
-            if (threeDayButton.Checked)
-            {
-                type = ForecastTypeEnum.threeDays;
-                _userForecastPreference = (int)ForecastTypeEnum.threeDays;
-            }
-            if (fourteenDayButton.Checked)
-            {
-                type = ForecastTypeEnum.fourteenDays;
-                _userForecastPreference = (int)ForecastTypeEnum.fourteenDays;
-            }
+            var type = GetForecastType();
+            _userForecastPreference = (int)type;
 
-            TemperatureTypeEnum temperatureType = TemperatureTypeEnum.Celsius;
-            _userTemperaturePreference = (int)TemperatureTypeEnum.Celsius;
-            if (kelvinButton.Checked)
-            {
-                temperatureType = TemperatureTypeEnum.Kelvin;
-                _userTemperaturePreference = (int)TemperatureTypeEnum.Kelvin;
-            }
+            TemperatureTypeEnum temperatureType = GetTemperatureType();
+            _userTemperaturePreference = (int)temperatureType;
 
             WeatherForecastDomainService weatherService = new WeatherForecastDomainService();
             var inputValidator = new UiValidation();
@@ -94,6 +74,34 @@ namespace WindowsForms
             }
             favouriteOutput.Text = outputFavourites;
             SaveSettings();
+        }
+
+        private TemperatureTypeEnum GetTemperatureType()
+        {
+            if (kelvinButton.Checked)
+            {
+                return TemperatureTypeEnum.Kelvin;
+            }
+
+            return TemperatureTypeEnum.Celsius;
+        }
+
+        private ForecastTypeEnum GetForecastType()
+        {
+            if (hourlyButton.Checked)
+            {
+                return ForecastTypeEnum.hourly;
+            }
+            if (threeDayButton.Checked)
+            {
+                return ForecastTypeEnum.threeDays;
+            }
+            if (fourteenDayButton.Checked)
+            {
+                return ForecastTypeEnum.fourteenDays;
+            }
+
+            return ForecastTypeEnum.easy;
         }
 
         private void exitbutton_Click(object sender, EventArgs e)

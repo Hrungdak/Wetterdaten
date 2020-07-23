@@ -30,6 +30,7 @@ namespace Functionalities.DomainLogic
             // = "Orchestrierung", ruft Methoden auf ohne zu wissen, woher bspw. Parameter herkommen
             // Funktionales Programmieren
             _temperatureStrategy = TemperatureStrategyFactory.GetTemperatureStrategy(temperatureType);
+            // Exercise: New Provider (e.g. Random) and change next Line to see if it still work
             IWeatherForecastProvider weatherForecastProvider = new OpenWeatherAPI(HttpClientFactory.CreateClient(), "a1fcc507923163ff1bae113a80d8f82a");
             WeatherForecast weatherForecast = new WeatherForecast(weatherForecastProvider);
             _forecastStrategy = ForecastStrategyFactory.GetForecastStrategy(forecastType, weatherForecast);
